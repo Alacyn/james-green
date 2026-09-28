@@ -1,46 +1,73 @@
-import { Reveal, Eyebrow } from "./Reveal";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Reveal, Eyebrow, scrollToId } from "./Reveal";
 
 export default function NetworkSales() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+
   return (
-    <section data-testid="rise-of-akg-section" id="network" className="bg-white text-ink">
-      <div className="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28 lg:py-32">
-        <Reveal y={24}>
-          <Eyebrow>Unparalleled Network</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.08} y={30}>
-          <h2 className="mt-7 font-sans text-xl font-light uppercase tracking-[0.3em] sm:text-3xl">
-            The Rise of <span className="text-bronze">AKG</span>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.18}>
-          <p className="mt-11 text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base">
-            Founded in the Spring of 2017, the Aaron Kirman Group (AKG) was created with
-            a mission to foster collaboration, resource sharing, growth, and support
-            among like-minded professionals. That vision evolved significantly in the
-            Fall of 2022, when AKG transitioned into a brokerage and formed a landmark
-            partnership with Christie&rsquo;s International Real Estate, resulting in
-            the launch of the formerly named AKG | Christie&rsquo;s International Real
-            Estate. What began as a team of 7 agents and staff has since grown into a
-            brokerage of more than 300 people as of 2026, reflecting its rapid expansion
-            and continued evolution within the luxury real estate industry.
-          </p>
-        </Reveal>
-        <Reveal delay={0.26}>
-          <p className="mt-8 text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base">
-            The brokerage was founded by Aaron Kirman, President and CEO of
-            Christie&rsquo;s International Real Estate | Southern California, and is
-            headquartered in Beverly Hills, California. Throughout his career, Aaron has
-            consistently been recognized as one of the top agents in the world and was
-            recently named the #1 Agent in Los Angeles.* With notable sales including
-            &ldquo;The One,&rdquo; the Danny Thomas Estate, the Edie Goetz Estate, and
-            many others, Aaron has represented more than $24 billion in luxury home
-            sales.
-          </p>
-        </Reveal>
-        <Reveal delay={0.34}>
-          <p className="mt-9 font-sans text-[11px] uppercase tracking-[0.25em] text-ink/40">
-            * 2023 Los Angeles Business Journal
-          </p>
+    <section data-testid="meet-james-section" id="about" className="bg-white text-ink">
+      <div
+        ref={ref}
+        className="mx-auto grid max-w-[1360px] grid-cols-1 items-center gap-12 px-6 py-20 sm:py-28 lg:grid-cols-12 lg:gap-16 lg:px-16 lg:py-32"
+      >
+        <div className="order-1 lg:col-span-6">
+          <Reveal>
+            <Eyebrow>About</Eyebrow>
+            <h2 className="mt-6 font-sans text-xl font-light uppercase tracking-[0.3em] sm:text-3xl">
+              Meet <span className="text-bronze">James Green</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-9 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
+              Drawing on more than two decades of diverse, client-centered professional
+              experience, James Green brings a thoughtful, multidimensional perspective
+              to real estate&mdash;one that extends well beyond the transaction.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
+              His background in financial services, lending, relocation, and client
+              advocacy gives him a broader understanding of the decisions surrounding
+              buying, selling, and moving. For James, real estate is ultimately about
+              clarity: understanding your options, considering the bigger picture, and
+              moving forward with confidence.
+            </p>
+          </Reveal>
+          <Reveal delay={0.25}>
+            <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
+              Known for his calm presence and approachable style, James takes the time
+              to listen, explain the process, and develop a strategy around the person
+              in front of him. Whether guiding a first-time buyer, helping a family
+              relocate to Dallas&ndash;Fort Worth, or advising an experienced homeowner
+              on their next move, his approach remains personal, thoughtful, and
+              grounded in genuine care.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <button
+              data-testid="meet-james-cta"
+              onClick={() => scrollToId("#contact")}
+              className="group mt-10 flex items-center gap-3 border border-bronze/60 bg-bronze/10 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-bronze backdrop-blur-sm transition-all duration-500 hover:bg-bronze hover:text-[#F1E6D7]"
+            >
+              Start the Conversation
+              <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+            </button>
+          </Reveal>
+        </div>
+
+        <Reveal className="order-2 lg:col-span-6" y={50}>
+          <div className="relative overflow-hidden" data-testid="meet-james-image">
+            <motion.img
+              src="/images/james-portrait.png"
+              alt="James Green — Global Real Estate Advisor"
+              style={{ y: imgY }}
+              className="h-[320px] w-full scale-[1.08] object-cover object-top sm:h-[480px] lg:h-[560px]"
+            />
+          </div>
         </Reveal>
       </div>
     </section>
