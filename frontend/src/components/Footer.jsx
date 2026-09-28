@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Youtube } from "lucide-react";
+import { Instagram, Facebook, Youtube, Play } from "lucide-react";
 import { Reveal, scrollToId } from "./Reveal";
 
 const NAV = [
@@ -58,6 +58,28 @@ export default function Footer() {
                     972.876.8030
                   </a>
                 </p>
+              </div>
+              <div className="mt-8 space-y-6">
+                <button
+                  data-testid="footer-cta-begin"
+                  onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
+                  className="bg-bronze px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500 hover:opacity-90"
+                >
+                  Begin a Conversation
+                </button>
+                <a
+                  data-testid="footer-follow-youtube"
+                  href="https://www.youtube.com/@JamesAGreenRealEstate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 font-sans text-[10px] uppercase tracking-[0.3em] text-white/60 transition-colors duration-300 hover:text-bronze-light"
+                >
+                  Follow on YouTube
+                  <span className="h-px w-12 bg-white/40 transition-all duration-500 group-hover:w-16 group-hover:bg-bronze-light" />
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 transition-colors duration-300 group-hover:border-bronze-light">
+                    <Play className="h-3 w-3 fill-current" />
+                  </span>
+                </a>
               </div>
               <div className="mt-8 flex gap-3">
                 {SOCIALS.map((s) => (

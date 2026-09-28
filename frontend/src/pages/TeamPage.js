@@ -8,7 +8,6 @@ import IndexList from "@/components/IndexList";
 import BuySection from "@/components/BuySection";
 import SellSection from "@/components/SellSection";
 import FeaturedProperties from "@/components/FeaturedProperties";
-import YouTubeSection from "@/components/YouTubeSection";
 import Footer from "@/components/Footer";
 
 export default function TeamPage() {
@@ -26,7 +25,6 @@ export default function TeamPage() {
         <BuySection />
         <SellSection />
         <FeaturedProperties />
-        <YouTubeSection />
       </main>
       <Footer />
     </div>
