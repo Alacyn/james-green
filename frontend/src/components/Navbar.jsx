@@ -77,13 +77,6 @@ export default function Navbar() {
               ))}
             </nav>
             <button
-              data-testid="nav-cta-begin"
-              onClick={() => go("#connect")}
-              className="hidden border border-white/70 px-6 py-3 font-sans text-[10px] uppercase tracking-[0.28em] text-white transition-all duration-500 hover:bg-white/10 md:block"
-            >
-              Begin a Conversation
-            </button>
-            <button
               data-testid="nav-toggle"
               className={`flex h-11 w-11 items-center justify-center text-white transition-all duration-300 lg:hidden ${
                 open ? "pointer-events-none opacity-0" : ""
@@ -106,9 +99,9 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: EASE }}
-              className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#16100C]/95 backdrop-blur-xl"
+              className="fixed inset-0 z-40 flex flex-col items-start justify-center bg-[#16100C]/95 px-10 backdrop-blur-xl"
             >
-              <nav className="flex flex-col items-center gap-1.5">
+              <nav className="flex flex-col items-start gap-1.5">
                 {LINKS.map((l, i) => (
                   <div key={l.href} className="overflow-hidden">
                     <motion.button
@@ -118,23 +111,13 @@ export default function Navbar() {
                       transition={{ duration: 0.6, delay: 0.07 * i, ease: EASE }}
                       data-testid={`mobile-link-${l.label.toLowerCase()}`}
                       onClick={() => go(l.href)}
-                      className="block py-1.5 text-center font-sans text-sm font-light uppercase tracking-[0.3em] text-[#F1E6D7]/85"
+                      className="block py-1.5 text-left font-sans text-sm font-light uppercase tracking-[0.3em] text-[#F1E6D7]/85"
                     >
                       {l.label}
                     </motion.button>
                   </div>
                 ))}
               </nav>
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                data-testid="mobile-cta-begin"
-                onClick={() => go("#connect")}
-                className="mt-8 border border-bronze-light/70 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.28em] text-bronze-light"
-              >
-                Begin a Conversation
-              </motion.button>
             </motion.div>
             <motion.button
               data-testid="menu-close"

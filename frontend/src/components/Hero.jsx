@@ -28,7 +28,7 @@ export default function Hero() {
 
       <motion.div
         style={{ opacity: fade }}
-        className="relative z-10 flex -translate-y-12 flex-col items-center px-6 text-center sm:-translate-y-6"
+        className="relative z-10 flex -translate-y-12 flex-col items-center px-6 text-center sm:-translate-y-10"
       >
         <motion.p
           initial={{ opacity: 0, y: 18 }}
@@ -42,7 +42,7 @@ export default function Hero() {
 
         <h1
           data-testid="hero-title"
-          className="mt-3 overflow-hidden whitespace-nowrap font-serif text-4xl font-normal uppercase tracking-[0.04em] text-white sm:mt-4 sm:text-6xl lg:text-7xl"
+          className="mt-3 overflow-hidden whitespace-nowrap font-serif text-4xl font-normal uppercase tracking-[0.14em] text-white sm:mt-4 sm:text-6xl lg:text-7xl"
         >
           <motion.span
             className="block"
