@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import TeamParallax from "@/components/TeamParallax";
 import NetworkSales from "@/components/NetworkSales";
 import ExplorePanels from "@/components/ExplorePanels";
 import FeaturedStats from "@/components/FeaturedStats";
@@ -17,9 +16,8 @@ export default function TeamPage() {
       <main>
         <Hero />
         <About />
-        <TeamParallax />
-        <NetworkSales />
         <ExplorePanels />
+        <NetworkSales />
         <FeaturedStats />
         <IndexList />
         <FeaturedProperties />
