@@ -57,14 +57,18 @@ export default function Navbar() {
           <button
             data-testid="nav-logo-home"
             onClick={() => go("top")}
-            aria-label="James Green — home"
-            className="flex items-baseline gap-2"
+            aria-label="eXp Luxury — home"
+            className="flex items-center gap-2.5"
           >
-            <span className={`font-serif text-[20px] tracking-[0.08em] transition-colors duration-500 sm:text-[22px] ${solid ? "text-ink" : "text-white"}`}>
-              JAMES GREEN
-            </span>
-            <span className={`hidden font-sans text-[9px] uppercase tracking-[0.4em] transition-colors duration-500 sm:block ${solid ? "text-ink/50" : "text-white/60"}`}>
-              Global
+            <svg viewBox="0 0 26 26" className="h-4 w-4 sm:h-[18px] sm:w-[18px]" aria-hidden="true">
+              <rect x="5" y="5" width="16" height="16" rx="2.5" transform="rotate(45 13 13)" fill="#B69B57" />
+            </svg>
+            <span
+              className={`font-sans text-[13px] font-medium uppercase tracking-[0.42em] transition-colors duration-500 sm:text-sm ${
+                solid ? "text-[#A08540]" : "text-[#C9B36E]"
+              }`}
+            >
+              Luxury
             </span>
           </button>
 
