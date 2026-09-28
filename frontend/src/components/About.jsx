@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Reveal, Eyebrow } from "./Reveal";
+import { ArrowRight } from "lucide-react";
+import { Reveal, Eyebrow, scrollToId } from "./Reveal";
 
 export default function About() {
   const ref = useRef(null);
@@ -23,21 +24,38 @@ export default function About() {
           <Reveal delay={0.15}>
             <p className="mt-9 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
               Drawing on more than two decades of diverse, client-centered professional
-              experience, James Green brings a thoughtful, multidimensional approach to
-              real estate that goes well beyond the transaction. His background in
-              financial services, lending, relocation, and client advocacy gives him a
-              broader perspective on the decisions that surround buying, selling, and
-              moving.
+              experience, James Green brings a thoughtful, multidimensional perspective
+              to real estate&mdash;one that extends well beyond the transaction.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
+              His background in financial services, lending, relocation, and client
+              advocacy gives him a broader understanding of the decisions surrounding
+              buying, selling, and moving. For James, real estate is ultimately about
+              clarity: understanding your options, considering the bigger picture, and
+              moving forward with confidence.
             </p>
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
-              For James, real estate is ultimately about clarity. He believes clients
-              make their best decisions when they understand their options, the
-              financial considerations behind them, and what each step means for their
-              bigger picture. That philosophy shapes the way he works with every
-              client.
+              Known for his calm presence and approachable style, James takes the time
+              to listen, explain the process, and develop a strategy around the person
+              in front of him. Whether guiding a first-time buyer, helping a family
+              relocate to Dallas&ndash;Fort Worth, or advising an experienced homeowner
+              on their next move, his approach remains personal, thoughtful, and
+              grounded in genuine care.
             </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <button
+              data-testid="meet-james-cta"
+              onClick={() => scrollToId("#contact")}
+              className="group mt-10 flex items-center gap-3 border border-bronze/60 bg-bronze/10 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-bronze backdrop-blur-sm transition-all duration-500 hover:bg-bronze hover:text-[#F1E6D7]"
+            >
+              Start the Conversation
+              <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+            </button>
           </Reveal>
         </div>
 
