@@ -6,6 +6,7 @@ import ExplorePanels from "@/components/ExplorePanels";
 import FeaturedStats from "@/components/FeaturedStats";
 import IndexList from "@/components/IndexList";
 import FeaturedProperties from "@/components/FeaturedProperties";
+import YouTubeSection from "@/components/YouTubeSection";
 import Footer from "@/components/Footer";
 
 export default function TeamPage() {
@@ -21,6 +22,7 @@ export default function TeamPage() {
         <FeaturedStats />
         <IndexList />
         <FeaturedProperties />
+        <YouTubeSection />
       </main>
       <Footer />
     </div>
