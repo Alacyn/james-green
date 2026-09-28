@@ -6,7 +6,7 @@ import { EASE, scrollToId } from "./Reveal";
 const LINKS = [
   { label: "Home", href: "top" },
   { label: "About", href: "#about" },
-  { label: "Buy", href: "#featured" },
+  { label: "Buy", href: "#properties" },
   { label: "Sell", href: "#network" },
   { label: "Contact", href: "#connect" },
 ];

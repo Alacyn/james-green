@@ -145,6 +145,35 @@ async def create_connect_inquiry(input: ConnectInquiryCreate):
     }
 
 
+class Property(BaseDocument):
+    address: str
+    city: str
+    state: str
+    beds: str
+    baths: str
+    sqft: str
+    price: str
+    image_url: str
+    order: int = 0
+
+
+SAMPLE_PROPERTIES = [
+    Property(address="4323 Miramar Ave", city="Dallas", state="TX", beds="4 Beds", baths="3.5 Baths", sqft="4,800 Sq.Ft.", price="$2,450,000", image_url="/images/property-1.jpg", order=1),
+    Property(address="6209 Lakeshore Dr", city="Dallas", state="TX", beds="3 Beds", baths="3 Baths", sqft="3,200 Sq.Ft.", price="$1,675,000", image_url="/images/property-2.jpg", order=2),
+    Property(address="1204 Coventry Ct", city="Southlake", state="TX", beds="5 Beds", baths="4.5 Baths", sqft="6,100 Sq.Ft.", price="$3,295,000", image_url="/images/property-3.jpg", order=3),
+    Property(address="801 Monarch Dr", city="Frisco", state="TX", beds="4 Beds", baths="4 Baths", sqft="4,300 Sq.Ft.", price="$1,295,000", image_url="/images/property-4.jpg", order=4),
+]
+
+
+@api_router.get("/properties")
+async def get_properties():
+    count = await db.properties.count_documents({})
+    if count == 0:
+        await db.properties.insert_many([p.to_mongo() for p in SAMPLE_PROPERTIES])
+    docs = await db.properties.find({}).sort("order", 1).to_list(100)
+    return [Property.from_mongo(doc).model_dump() for doc in docs]
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
