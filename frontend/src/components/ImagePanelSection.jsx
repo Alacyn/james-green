@@ -1,36 +1,36 @@
 import { ArrowRight } from "lucide-react";
-import { Reveal, scrollToId } from "./Reveal";
+import { Reveal } from "./Reveal";
 
 export default function ImagePanelSection({ id, testid, eyebrow, title, copy, image, align = "left" }) {
-  return (
-    <section data-testid={testid} id={id} className="relative overflow-hidden">
-      <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-black/25" />
+  const imageSide = align === "right" ? "lg:order-2" : "lg:order-1";
+  const contentSide = align === "right" ? "lg:order-1" : "lg:order-2";
 
-      <div
-        className={`relative z-10 flex min-h-[80vh] items-center px-6 py-20 sm:px-10 lg:px-16 ${
-          align === "right" ? "justify-end" : "justify-start"
-        }`}
-      >
-        <Reveal y={40} className="w-full max-w-xl">
-          <div className="border border-white/25 bg-[#16100C]/35 px-8 py-12 backdrop-blur-xl sm:px-12 lg:px-14">
+  return (
+    <section data-testid={testid} id={id} className="bg-[#221810] text-[#F1E6D7]">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className={`${imageSide} h-64 sm:h-80 lg:h-auto`}>
+          <img src={image} alt="" className="h-full w-full object-cover" />
+        </div>
+
+        <div className={`${contentSide} flex items-center px-6 py-16 sm:px-10 lg:px-20 lg:py-24`}>
+          <Reveal y={40} className="w-full max-w-xl">
             <p className="inline-block border-b border-bronze-light/70 pb-2 font-sans text-[11px] uppercase tracking-[0.3em] text-white/85">
               {eyebrow}
             </p>
-            <h2 className="mt-6 font-sans text-2xl font-light uppercase tracking-[0.25em] text-white sm:text-4xl">
+            <h2 className="mt-6 font-sans text-2xl font-light uppercase tracking-[0.25em] sm:text-4xl">
               {title}
             </h2>
-            <p className="mt-7 text-[15px] font-light leading-[1.9] text-white/85">{copy}</p>
+            <p className="mt-7 text-[15px] font-light leading-[1.9] text-white/80">{copy}</p>
             <button
               data-testid={`${testid}-cta`}
-              onClick={() => scrollToId("#contact")}
+              onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
               className="group mt-10 flex items-center gap-3 bg-bronze-light px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-ink transition-all duration-500 hover:opacity-90"
             >
               Start the Conversation
               <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
             </button>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
