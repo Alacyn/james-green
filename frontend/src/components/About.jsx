@@ -1,20 +1,19 @@
-import { Reveal } from "./Reveal";
+import { Reveal, Eyebrow } from "./Reveal";
 
 export default function About() {
   return (
     <section data-testid="thoughtful-guidance-section" id="network" className="bg-white text-ink">
-      <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28 lg:py-32">
+      <div className="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28 lg:py-32">
         <Reveal y={24}>
-          <p className="font-sans text-sm uppercase tracking-[0.2em] text-ink">
-            Thoughtful Guidance
-          </p>
-          <span className="mt-5 block h-px w-16 bg-ink" />
-          <h2 className="mt-9 font-sans text-2xl font-normal uppercase tracking-[0.2em] sm:text-4xl">
-            What Comes <span className="text-bronze">Next</span>
+          <Eyebrow>Thoughtful Guidance</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.08} y={30}>
+          <h2 className="mt-8 font-serif text-3xl font-normal uppercase leading-[1.15] tracking-[0.02em] sm:text-5xl">
+            What Comes <span className="text-bronze-light">Next</span>
           </h2>
         </Reveal>
-        <Reveal delay={0.15}>
-          <p className="mt-10 text-left text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base">
+        <Reveal delay={0.18}>
+          <p className="mx-auto mt-10 max-w-2xl text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base">
             A move is rarely just about a property. It&rsquo;s about where
             you&rsquo;re going, what matters to you, and making informed decisions
             along the way. James Green brings clarity, perspective, and a personal
