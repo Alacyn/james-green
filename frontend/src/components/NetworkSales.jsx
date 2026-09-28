@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Play } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { Reveal, Eyebrow } from "./Reveal";
 
 export default function NetworkSales() {
@@ -30,11 +30,9 @@ export default function NetworkSales() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
-              His background in financial services, lending, relocation, and client
-              advocacy gives him a broader understanding of the decisions surrounding
-              buying, selling, and moving. For James, real estate is ultimately about
-              clarity: understanding your options, considering the bigger picture, and
-              moving forward with confidence.
+              His background spans financial services, lending, relocation, and client
+              advocacy, experiences that have shaped the way he understands both the
+              practical and personal considerations surrounding a move.
             </p>
           </Reveal>
           <Reveal delay={0.25}>
@@ -52,9 +50,10 @@ export default function NetworkSales() {
               <button
                 data-testid="meet-james-cta"
                 onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
-                className="bg-bronze/90 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
+                className="group flex items-center gap-3 bg-bronze/90 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
               >
-                Begin a Conversation
+                Start the Conversation
+                <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
               </button>
               <a
                 data-testid="meet-james-follow-youtube"

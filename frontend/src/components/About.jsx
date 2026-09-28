@@ -5,7 +5,7 @@ export default function About() {
     <section data-testid="thoughtful-guidance-section" id="network" className="bg-white text-ink">
       <div className="mx-auto max-w-4xl px-8 py-20 text-center sm:px-10 sm:py-28 lg:py-32">
         <Reveal y={24}>
-          <Eyebrow>Thoughtful Guidance</Eyebrow>
+          <Eyebrow>My Philosophy</Eyebrow>
         </Reveal>
         <Reveal delay={0.08} y={30}>
           <h2 className="mt-8 font-sans text-xl font-light uppercase tracking-[0.3em] sm:text-3xl">
