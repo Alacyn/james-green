@@ -9,7 +9,7 @@ export default function About() {
         </Reveal>
         <Reveal delay={0.08} y={30}>
           <h2 className="mt-8 font-sans text-xl font-light uppercase tracking-[0.3em] sm:text-3xl">
-            What Comes <span className="text-bronze-light">Next</span>
+            What Comes Next
           </h2>
         </Reveal>
         <Reveal delay={0.18}>

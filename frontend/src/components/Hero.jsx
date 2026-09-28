@@ -28,7 +28,7 @@ export default function Hero() {
 
       <motion.div
         style={{ opacity: fade }}
-        className="relative z-10 flex -translate-y-16 flex-col items-center px-6 text-center sm:-translate-y-14"
+        className="relative z-10 flex -translate-y-24 flex-col items-center px-6 text-center sm:-translate-y-20"
       >
         <motion.p
           initial={{ opacity: 0, y: 18 }}
