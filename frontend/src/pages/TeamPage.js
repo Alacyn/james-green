@@ -8,7 +8,6 @@ import IndexList from "@/components/IndexList";
 import ConnectForm from "@/components/ConnectForm";
 import InstagramFeed from "@/components/InstagramFeed";
 import Footer from "@/components/Footer";
-import StickyConnectBar from "@/components/StickyConnectBar";
 
 export default function TeamPage() {
   return (
@@ -26,7 +25,6 @@ export default function TeamPage() {
         <InstagramFeed />
       </main>
       <Footer />
-      <StickyConnectBar />
     </div>
   );
 }

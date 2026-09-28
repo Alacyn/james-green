@@ -23,7 +23,7 @@ module.exports = {
         'bronze-light': '#C7A47E',
         ink: '#16100C',
         coal: '#16100C',
-        paper: '#F1E6D7',
+        paper: '#FFFFFF',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

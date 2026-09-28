@@ -43,30 +43,24 @@ export default function Navbar() {
     }, 60);
   };
 
-  const solid = scrolled && !open;
-
   return (
     <>
       <header
         data-testid="main-navigation"
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          solid ? "bg-white/90 shadow-[0_1px_0_rgba(0,0,0,0.05)] backdrop-blur-md" : "bg-transparent"
+          scrolled && !open
+            ? "bg-[#16100C]/55 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+            : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
+        <div className="mx-auto flex h-[76px] max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
           <button
             data-testid="nav-logo-home"
             onClick={() => go("top")}
             aria-label="eXp Luxury — home"
-            className="flex items-center gap-2.5"
+            className="flex items-center"
           >
-            <img
-              src="/images/exp-luxury-white.webp"
-              alt="eXp Luxury"
-              className={`h-5 w-auto transition-all duration-500 sm:h-6 ${
-                solid ? "brightness-0 sepia saturate-[2.4] hue-rotate-[345deg] brightness-[0.52]" : ""
-              }`}
-            />
+            <img src="/images/exp-luxury-white.webp" alt="eXp Luxury" className="h-8 w-auto sm:h-9" />
           </button>
 
           <div className="flex items-center gap-8">
@@ -76,9 +70,7 @@ export default function Navbar() {
                   key={l.href}
                   data-testid={`nav-link-${l.label.toLowerCase()}`}
                   onClick={() => go(l.href)}
-                  className={`font-sans text-[11px] uppercase tracking-[0.22em] transition-colors duration-300 ${
-                    solid ? "text-ink/80 hover:text-ink" : "text-white/85 hover:text-white"
-                  }`}
+                  className="font-sans text-[11px] uppercase tracking-[0.22em] text-white/85 transition-colors duration-300 hover:text-white"
                 >
                   {l.label}
                 </button>
@@ -87,19 +79,15 @@ export default function Navbar() {
             <button
               data-testid="nav-cta-begin"
               onClick={() => go("#connect")}
-              className={`hidden border px-6 py-3 font-sans text-[10px] uppercase tracking-[0.28em] transition-all duration-500 md:block ${
-                solid
-                  ? "border-ink/60 text-ink hover:bg-ink hover:text-white"
-                  : "border-white/70 text-white hover:bg-white/10"
-              }`}
+              className="hidden border border-white/70 px-6 py-3 font-sans text-[10px] uppercase tracking-[0.28em] text-white transition-all duration-500 hover:bg-white/10 md:block"
             >
               Begin a Conversation
             </button>
             <button
               data-testid="nav-toggle"
-              className={`flex h-11 w-11 items-center justify-center transition-all duration-300 lg:hidden ${
+              className={`flex h-11 w-11 items-center justify-center text-white transition-all duration-300 lg:hidden ${
                 open ? "pointer-events-none opacity-0" : ""
-              } ${solid ? "text-ink" : "text-white"}`}
+              }`}
               onClick={() => setOpen(true)}
               aria-label="Open menu"
             >
@@ -118,9 +106,9 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: EASE }}
-              className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-coal/95 backdrop-blur-xl"
+              className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-[#16100C]/95 backdrop-blur-xl"
             >
-              <nav className="flex flex-col items-center gap-2">
+              <nav className="flex flex-col items-center gap-1.5">
                 {LINKS.map((l, i) => (
                   <div key={l.href} className="overflow-hidden">
                     <motion.button
@@ -130,7 +118,7 @@ export default function Navbar() {
                       transition={{ duration: 0.6, delay: 0.07 * i, ease: EASE }}
                       data-testid={`mobile-link-${l.label.toLowerCase()}`}
                       onClick={() => go(l.href)}
-                      className="block py-2 text-center font-serif text-4xl font-light uppercase tracking-[0.06em] text-[#F5F0EA]"
+                      className="block py-1.5 text-center font-sans text-sm font-light uppercase tracking-[0.3em] text-[#F1E6D7]/85"
                     >
                       {l.label}
                     </motion.button>
@@ -143,7 +131,7 @@ export default function Navbar() {
                 transition={{ delay: 0.4 }}
                 data-testid="mobile-cta-begin"
                 onClick={() => go("#connect")}
-                className="mt-10 border border-bronze-light/70 px-8 py-4 font-sans text-[11px] uppercase tracking-[0.28em] text-bronze-light"
+                className="mt-8 border border-bronze-light/70 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.28em] text-bronze-light"
               >
                 Begin a Conversation
               </motion.button>
