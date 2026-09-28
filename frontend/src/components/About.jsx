@@ -13,18 +13,7 @@ export default function About() {
         ref={ref}
         className="mx-auto grid max-w-[1360px] grid-cols-1 items-center gap-12 px-6 py-20 sm:py-28 lg:grid-cols-12 lg:gap-16 lg:px-16 lg:py-32"
       >
-        <Reveal className="order-1 lg:col-span-6" y={50}>
-          <div className="relative overflow-hidden" data-testid="meet-james-image">
-            <motion.img
-              src="/images/hero.jpg"
-              alt="James Green — Global Real Estate Advisor"
-              style={{ y: imgY }}
-              className="h-[320px] w-full scale-[1.12] object-cover sm:h-[480px] lg:h-[560px]"
-            />
-          </div>
-        </Reveal>
-
-        <div className="order-2 lg:col-span-6">
+        <div className="order-1 lg:col-span-6">
           <Reveal>
             <Eyebrow>About</Eyebrow>
             <h2 className="mt-6 font-sans text-xl font-light uppercase tracking-[0.3em] sm:text-3xl">
@@ -51,6 +40,17 @@ export default function About() {
             </p>
           </Reveal>
         </div>
+
+        <Reveal className="order-2 lg:col-span-6" y={50}>
+          <div className="relative overflow-hidden" data-testid="meet-james-image">
+            <motion.img
+              src="/images/james-portrait.png"
+              alt="James Green — Global Real Estate Advisor"
+              style={{ y: imgY }}
+              className="h-[320px] w-full scale-[1.08] object-cover object-top sm:h-[480px] lg:h-[560px]"
+            />
+          </div>
+        </Reveal>
       </div>
     </section>
   );
