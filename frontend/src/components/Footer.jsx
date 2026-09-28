@@ -6,7 +6,7 @@ const NAV = [
   { label: "About", href: "#about" },
   { label: "Buy", href: "#properties" },
   { label: "Sell", href: "#network" },
-  { label: "Contact", href: "#connect" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const TikTokIcon = () => (
@@ -37,7 +37,7 @@ const COMPLIANCE = [
 
 export default function Footer() {
   return (
-    <footer data-testid="footer-section" className="bg-[#221810] text-[#F1E6D7]">
+    <footer id="contact" data-testid="footer-section" className="bg-[#221810] text-[#F1E6D7]">
       <div className="mx-auto max-w-[1600px] px-6 pb-10 pt-20 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12">
           <div className="lg:col-span-6">

@@ -21,7 +21,7 @@ const PANELS = [
   },
   {
     label: "Connect",
-    href: "#connect",
+    href: "#contact",
     img: "/images/team.jpg",
     copy: "Tell James about your goals — he will personally follow up.",
   },
