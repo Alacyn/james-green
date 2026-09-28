@@ -1,63 +1,46 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { Reveal, Eyebrow } from "./Reveal";
 
 export default function NetworkSales() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
-
   return (
-    <section data-testid="network-sales-section" id="network" className="bg-white text-ink">
-      <div
-        ref={ref}
-        className="mx-auto grid max-w-[1360px] grid-cols-1 items-center gap-12 px-6 py-20 sm:py-28 lg:grid-cols-12 lg:gap-16 lg:px-16 lg:py-32"
-      >
-        <div className="order-2 lg:order-1 lg:col-span-6">
-          <Reveal>
-            <Eyebrow>Unparalleled Network</Eyebrow>
-            <h2 className="mt-6 font-serif text-3xl font-normal uppercase tracking-[0.04em] sm:text-5xl">
-              Unmatched <span className="text-bronze">Sales</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mt-9 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
-              With a remarkable track record of notable sales, including prestigious
-              properties like John Lautner&rsquo;s Garcia House, Scott Johnson&rsquo;s
-              The Wall House, Richard Landry&rsquo;s Brentwood Estate, and many more,
-              the brokerage has amassed $19 billion in properties sold. These
-              accomplished agents are revolutionizing one of the most dominant and
-              competitive industries in the world. Their remarkable achievements have
-              already earned them the distinguished title of the #1 Real Estate Company
-              in Los Angeles,* solidifying their position as unrivaled industry leaders.
-            </p>
-          </Reveal>
-          <Reveal delay={0.25}>
-            <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
-              With its recent expansion into the San Fernando Valley, Santa Barbara,
-              Brentwood and the OC, this brokerage continues to soar to new heights.
-              Through their unmatched industry knowledge, unparalleled network, and a
-              steadfast commitment to excellence, Christie&rsquo;s International Real
-              Estate | Southern California remains at the forefront of the industry,
-              leaving an indelible mark on the world of luxury real estate.
-            </p>
-          </Reveal>
-          <Reveal delay={0.35}>
-            <p className="mt-9 font-sans text-[11px] uppercase tracking-[0.25em] text-ink/40">
-              * 2023 Los Angeles Business Journal
-            </p>
-          </Reveal>
-        </div>
-
-        <Reveal className="order-1 lg:order-2 lg:col-span-6" y={50}>
-          <div className="relative overflow-hidden" data-testid="network-sales-image">
-            <motion.img
-              src="/images/network.jpg"
-              alt="Landmark luxury estate represented by the brokerage"
-              style={{ y: imgY }}
-              className="h-[320px] w-full scale-[1.12] object-cover sm:h-[480px] lg:h-[560px]"
-            />
-          </div>
+    <section data-testid="rise-of-akg-section" id="network" className="bg-white text-ink">
+      <div className="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28 lg:py-32">
+        <Reveal y={24}>
+          <Eyebrow>Unparalleled Network</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.08} y={30}>
+          <h2 className="mt-7 font-serif text-3xl font-normal uppercase tracking-[0.04em] sm:text-5xl">
+            The Rise of <span className="text-bronze">AKG</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.18}>
+          <p className="mt-11 text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base">
+            Founded in the Spring of 2017, the Aaron Kirman Group (AKG) was created with
+            a mission to foster collaboration, resource sharing, growth, and support
+            among like-minded professionals. That vision evolved significantly in the
+            Fall of 2022, when AKG transitioned into a brokerage and formed a landmark
+            partnership with Christie&rsquo;s International Real Estate, resulting in
+            the launch of the formerly named AKG | Christie&rsquo;s International Real
+            Estate. What began as a team of 7 agents and staff has since grown into a
+            brokerage of more than 300 people as of 2026, reflecting its rapid expansion
+            and continued evolution within the luxury real estate industry.
+          </p>
+        </Reveal>
+        <Reveal delay={0.26}>
+          <p className="mt-8 text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base">
+            The brokerage was founded by Aaron Kirman, President and CEO of
+            Christie&rsquo;s International Real Estate | Southern California, and is
+            headquartered in Beverly Hills, California. Throughout his career, Aaron has
+            consistently been recognized as one of the top agents in the world and was
+            recently named the #1 Agent in Los Angeles.* With notable sales including
+            &ldquo;The One,&rdquo; the Danny Thomas Estate, the Edie Goetz Estate, and
+            many others, Aaron has represented more than $24 billion in luxury home
+            sales.
+          </p>
+        </Reveal>
+        <Reveal delay={0.34}>
+          <p className="mt-9 font-sans text-[11px] uppercase tracking-[0.25em] text-ink/40">
+            * 2023 Los Angeles Business Journal
+          </p>
         </Reveal>
       </div>
     </section>
