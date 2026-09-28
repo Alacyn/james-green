@@ -17,8 +17,8 @@ export default function Hero() {
     >
       <motion.div style={{ y: imgY }} className="absolute inset-0">
         <img
-          src="/images/interior.png"
-          alt="Luxury estate interior"
+          src="/images/hero-bg.png"
+          alt="Luxury estate living room with travertine fireplace"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-black/25" />
