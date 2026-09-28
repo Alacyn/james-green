@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Reveal, Eyebrow, scrollToId } from "./Reveal";
+import { Play } from "lucide-react";
+import { Reveal, Eyebrow } from "./Reveal";
 
 export default function NetworkSales() {
   const ref = useRef(null);
@@ -48,14 +48,28 @@ export default function NetworkSales() {
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <button
-              data-testid="meet-james-cta"
-              onClick={() => scrollToId("#contact")}
-              className="group mt-10 flex items-center gap-3 bg-bronze px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
-            >
-              Start the Conversation
-              <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
-            </button>
+            <div className="mt-10 space-y-6">
+              <button
+                data-testid="meet-james-cta"
+                onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
+                className="bg-bronze px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500 hover:opacity-90"
+              >
+                Begin a Conversation
+              </button>
+              <a
+                data-testid="meet-james-follow-youtube"
+                href="https://www.youtube.com/@JamesAGreenRealEstate"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 font-sans text-[10px] uppercase tracking-[0.3em] text-ink/60 transition-colors duration-300 hover:text-bronze"
+              >
+                Follow on YouTube
+                <span className="h-px w-12 bg-ink/40 transition-all duration-500 group-hover:w-16 group-hover:bg-bronze" />
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/40 transition-colors duration-300 group-hover:border-bronze">
+                  <Play className="h-3 w-3 fill-current" />
+                </span>
+              </a>
+            </div>
           </Reveal>
         </div>
 
