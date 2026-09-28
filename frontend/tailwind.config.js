@@ -19,11 +19,11 @@ module.exports = {
         sans: ['Montserrat', 'Avenir', 'system-ui', 'sans-serif']
       },
       colors: {
-        bronze: '#A8926E',
-        'bronze-light': '#C2AE8C',
-        ink: '#1A1A1A',
-        coal: '#0A0A0A',
-        paper: '#FCFBFA',
+        bronze: '#654731',
+        'bronze-light': '#C7A47E',
+        ink: '#16100C',
+        coal: '#16100C',
+        paper: '#F1E6D7',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

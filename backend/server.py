@@ -77,8 +77,8 @@ class ConnectInquiry(BaseDocument):
     last_name: str
     email: str
     phone: str
-    dre_number: str
-    total_sales: Optional[str] = None
+    interest: str
+    message: Optional[str] = None
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
@@ -93,8 +93,8 @@ class ConnectInquiryCreate(BaseModel):
     last_name: str
     email: str
     phone: str
-    dre_number: str
-    total_sales: Optional[str] = None
+    interest: str
+    message: Optional[str] = None
     consent: bool = False
 
 
@@ -134,14 +134,14 @@ async def create_connect_inquiry(input: ConnectInquiryCreate):
         last_name=input.last_name,
         email=input.email,
         phone=input.phone,
-        dre_number=input.dre_number,
-        total_sales=input.total_sales,
+        interest=input.interest,
+        message=input.message,
     )
     _ = await db.connect_inquiries.insert_one(inquiry.to_mongo())
     return {
         "ok": True,
         "id": inquiry.id,
-        "message": "Thank you — our team will be in touch shortly.",
+        "message": "Thank you — James will be in touch shortly.",
     }
 
 

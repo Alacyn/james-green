@@ -9,6 +9,14 @@ const NAV = [
   { label: "Contact", href: "#connect" },
 ];
 
+const SOCIALS = [
+  { label: "Instagram", href: "https://www.instagram.com/jamesagreenrealestate", testid: "footer-social-instagram" },
+  { label: "Facebook", href: "https://www.facebook.com/share/1DtRHJMvWu/?mibextid=wwXIfr", testid: "footer-social-facebook" },
+  { label: "YouTube", href: "https://www.youtube.com/@JamesAGreenRealEstate", testid: "footer-social-youtube" },
+  { label: "TikTok", href: "https://www.tiktok.com/@jamesagreenrealestate", testid: "footer-social-tiktok" },
+  { label: "Threads", href: "https://www.threads.com/@jamesagreenrealestate", testid: "footer-social-threads" },
+];
+
 export default function Footer() {
   return (
     <footer data-testid="footer-section" className="border-t border-white/10 bg-black">
@@ -16,29 +24,38 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal y={24}>
-              <div className="flex items-center gap-3">
-                <svg viewBox="0 0 40 40" className="h-10 w-10" aria-hidden="true">
-                  <rect x="0.75" y="0.75" width="38.5" height="38.5" fill="none" stroke="#A8926E" strokeWidth="1.4" />
-                  <text x="20" y="26" textAnchor="middle" fontFamily="Bodoni Moda, Didot, Georgia, serif" fontSize="15" letterSpacing="1" fill="#F5F0EA">
-                    JG
-                  </text>
-                </svg>
+              <div className="flex items-center gap-4">
+                <img
+                  src="/images/exp-luxury-white.webp"
+                  alt="eXp Luxury"
+                  className="h-8 w-auto sm:h-9"
+                />
+                <span className="h-8 w-px bg-white/25" />
                 <div className="leading-none">
-                  <p className="font-serif text-xl tracking-[0.14em] text-[#F5F0EA]">JAMES GREEN</p>
-                  <p className="mt-1.5 font-sans text-[9px] uppercase tracking-[0.5em] text-bronze-light">
+                  <p className="font-serif text-lg tracking-[0.14em] text-[#F1E6D7]">JAMES GREEN</p>
+                  <p className="mt-1.5 font-sans text-[9px] uppercase tracking-[0.45em] text-bronze-light">
                     Global Real Estate Advisor
                   </p>
                 </div>
               </div>
+              <p className="mt-8 max-w-sm text-sm font-light leading-relaxed text-white/55">
+                Serving the Dallas-Fort Worth Metroplex and the greater North Texas
+                area.
+              </p>
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
-                <button
-                  data-testid="footer-cta-begin"
-                  onClick={() => scrollToId("#connect")}
-                  className="group flex items-center gap-1 font-sans text-[11px] uppercase tracking-[0.25em] text-white/60 transition-colors duration-300 hover:text-bronze-light"
-                >
-                  Begin a Conversation
-                  <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </button>
+                {SOCIALS.map((s) => (
+                  <a
+                    key={s.label}
+                    data-testid={s.testid}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-1 font-sans text-[11px] uppercase tracking-[0.25em] text-white/60 transition-colors duration-300 hover:text-bronze-light"
+                  >
+                    {s.label}
+                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </a>
+                ))}
               </div>
             </Reveal>
           </div>
@@ -49,8 +66,13 @@ export default function Footer() {
               <ul className="mt-6 space-y-4 text-sm font-light text-white/70">
                 <li>James Green</li>
                 <li>
-                  <a data-testid="footer-phone-link" href="tel:4242497162" className="transition-colors hover:text-bronze-light">
-                    (424) 249-7162
+                  <a data-testid="footer-phone-link" href="tel:9728768030" className="transition-colors hover:text-bronze-light">
+                    972.876.8030
+                  </a>
+                </li>
+                <li>
+                  <a data-testid="footer-email-link" href="mailto:JamesAGreen@eXpRealty.com" className="transition-colors hover:text-bronze-light">
+                    JamesAGreen@eXpRealty.com
                   </a>
                 </li>
               </ul>

@@ -60,16 +60,13 @@ export default function Navbar() {
             aria-label="eXp Luxury — home"
             className="flex items-center gap-2.5"
           >
-            <svg viewBox="0 0 26 26" className="h-4 w-4 sm:h-[18px] sm:w-[18px]" aria-hidden="true">
-              <rect x="5" y="5" width="16" height="16" rx="2.5" transform="rotate(45 13 13)" fill="#B69B57" />
-            </svg>
-            <span
-              className={`font-sans text-[13px] font-medium uppercase tracking-[0.42em] transition-colors duration-500 sm:text-sm ${
-                solid ? "text-[#A08540]" : "text-[#C9B36E]"
+            <img
+              src="/images/exp-luxury-white.webp"
+              alt="eXp Luxury"
+              className={`h-5 w-auto transition-all duration-500 sm:h-6 ${
+                solid ? "brightness-0 sepia saturate-[2.4] hue-rotate-[345deg] brightness-[0.52]" : ""
               }`}
-            >
-              Luxury
-            </span>
+            />
           </button>
 
           <div className="flex items-center gap-8">

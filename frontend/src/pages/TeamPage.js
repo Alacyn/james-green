@@ -5,7 +5,6 @@ import TeamParallax from "@/components/TeamParallax";
 import NetworkSales from "@/components/NetworkSales";
 import FeaturedStats from "@/components/FeaturedStats";
 import IndexList from "@/components/IndexList";
-import VideoCta from "@/components/VideoCta";
 import ConnectForm from "@/components/ConnectForm";
 import InstagramFeed from "@/components/InstagramFeed";
 import Footer from "@/components/Footer";
@@ -23,7 +22,6 @@ export default function TeamPage() {
         <NetworkSales />
         <FeaturedStats />
         <IndexList />
-        <VideoCta />
         <ConnectForm />
         <InstagramFeed />
       </main>

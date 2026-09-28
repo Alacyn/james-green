@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --bronze: #a8926e;
-  --bronze-light: #c2ae8c;
-  --paper: #fcfbfa;
+  --ivory: #f1e6d7;
+  --cognac: #654731;
+  --cognac-light: #c7a47e;
+  --soft-black: #16100c;
 }
 
 html {
@@ -34,33 +35,33 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #ffffff;
-  color: #1a1a1a;
+  color: #16100c;
 }
 
 ::selection {
-  background: #a8926e;
-  color: #ffffff;
+  background: #654731;
+  color: #f1e6d7;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f2f0ed;
+  background: #f1e6d7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c9c4bc;
+  background: #c9b6a0;
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8926e;
+  background: #654731;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px #0a0a0a inset;
-  -webkit-text-fill-color: #f5f0ea;
+  -webkit-box-shadow: 0 0 0 1000px #16100c inset;
+  -webkit-text-fill-color: #f1e6d7;
   transition: background-color 9999s ease-in-out 0s;
 }
 
@@ -78,18 +79,18 @@ input:-webkit-autofill:focus {
   width: 100%;
   background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(245, 240, 234, 0.25);
+  border-bottom: 1px solid rgba(241, 230, 215, 0.25);
   padding: 0.85rem 0;
   font-size: 0.95rem;
   font-weight: 300;
   letter-spacing: 0.02em;
-  color: #f5f0ea;
+  color: #f1e6d7;
   outline: none;
   transition: border-color 0.4s ease;
 }
 .lux-input::placeholder {
-  color: rgba(245, 240, 234, 0.35);
+  color: rgba(241, 230, 215, 0.35);
 }
 .lux-input:focus {
-  border-color: #c2ae8c;
+  border-color: #c7a47e;
 }
