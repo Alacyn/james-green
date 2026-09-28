@@ -17,7 +17,7 @@ export default function NetworkSales() {
         <div className="order-1 lg:col-span-6">
           <Reveal>
             <Eyebrow>About</Eyebrow>
-            <h2 className="mt-6 font-serif text-3xl font-normal uppercase tracking-[0.02em] sm:text-5xl">
+            <h2 className="mt-6 font-sans text-xl font-light uppercase tracking-[0.3em] sm:text-3xl">
               Meet <span className="text-bronze">James Green</span>
             </h2>
           </Reveal>

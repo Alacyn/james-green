@@ -60,7 +60,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.15, ease: EASE }}
           data-testid="hero-explore-button"
           onClick={() => scrollToId("#about")}
-          className="group mt-6 flex items-center gap-3 rounded-none border border-white/50 bg-[#654731]/50 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-white backdrop-blur-md transition-all duration-500 hover:border-[#654731] hover:bg-[#654731]/85"
+          className="group mt-6 flex items-center gap-3 bg-bronze px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500 hover:bg-bronze-light hover:text-ink"
         >
           Explore
           <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
