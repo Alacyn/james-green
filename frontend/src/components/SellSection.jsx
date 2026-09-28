@@ -5,11 +5,12 @@ export default function SellSection() {
     <ImagePanelSection
       id="sell"
       testid="sell-section"
-      eyebrow="Explore"
-      title="Sell"
+      eyebrow="Sell"
+      title="Positioned with Purpose"
       image="/images/sell.png"
       align="right"
-      copy="Preparation, pricing, and positioning — presented with calm, considered strategy. James helps you understand the market and put your home in its best light from day one."
+      cta="Let's Talk"
+      copy="Every home has something worth highlighting, and thoughtful preparation can shape the way it is experienced from the moment it enters the market. James works with sellers to consider pricing, presentation, and positioning as part of one cohesive strategy, tailored to the property and the goals behind the move. Clients also have access to a preferred network of vendors and trusted professionals who can help prepare and present the home at its best—creating a polished, considered experience from beginning to end."
     />
   );
 }
