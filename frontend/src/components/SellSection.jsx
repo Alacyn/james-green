@@ -6,7 +6,7 @@ export default function SellSection() {
       id="sell"
       testid="sell-section"
       eyebrow="Sell"
-      title="Positioned with Purpose"
+      title="Ready for Market"
       image="/images/sell.png"
       align="right"
       cta="Let's Talk"

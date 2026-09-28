@@ -23,36 +23,48 @@ export default function NetworkSales() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-9 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
-              Drawing on more than two decades of diverse, client-centered professional
-              experience, James Green brings a thoughtful, multidimensional perspective
-              to real estate&mdash;one that extends well beyond the transaction.
+              For more than two decades, James Green has built his career around people,
+              decisions, and the moments when trusted guidance matters most. His
+              professional background spans financial services, lending, relocation, and
+              client advocacy&mdash;experiences that now shape the way he represents his
+              real estate clients across Dallas&ndash;Fort Worth.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
-              His background spans financial services, lending, relocation, and client
-              advocacy, experiences that have shaped the way he understands both the
-              practical and personal considerations surrounding a move.
+              James brings a calm presence to a process that can often feel anything but.
+              He listens closely, communicates clearly, and has a natural ability to make
+              complex decisions feel more manageable. His approach is measured and
+              solutions-oriented, grounded in understanding not only the property or
+              transaction at hand, but the priorities and circumstances of the person
+              behind it.
             </p>
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
-              Known for his calm presence and approachable style, James takes the time
-              to listen, explain the process, and develop a strategy around the person
-              in front of him. Whether guiding a first-time buyer, helping a family
-              relocate to Dallas&ndash;Fort Worth, or advising an experienced homeowner
-              on their next move, his approach remains personal, thoughtful, and
-              grounded in genuine care.
+              That perspective allows James to meet clients wherever they are in their
+              journey. From a first-time buyer working toward homeownership to a family
+              relocating to North Texas or an experienced homeowner preparing for what
+              comes next, he believes exceptional representation should feel personal,
+              informed, and genuinely invested.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
+            <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
+              For James, the goal is not simply to complete a transaction. It is to be the
+              kind of advisor clients trust to help them navigate an important
+              decision&mdash;and the one they feel confident turning to again when the
+              next one comes.
+            </p>
+          </Reveal>
+          <Reveal delay={0.35}>
             <div className="mt-10 space-y-6">
               <button
                 data-testid="meet-james-cta"
                 onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
                 className="group flex items-center gap-3 bg-bronze/90 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
               >
-                Start the Conversation
+                Start a Conversation
                 <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
               </button>
               <a
