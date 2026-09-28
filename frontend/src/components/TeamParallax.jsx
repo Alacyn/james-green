@@ -14,7 +14,7 @@ export default function TeamParallax() {
     >
       <motion.img
         src="/images/team.jpg"
-        alt="The Aaron Kirman Group team"
+        alt="Luxury real estate team"
         style={{ y }}
         className="absolute -top-[8%] left-0 h-[116%] w-full object-cover"
       />

@@ -31,7 +31,7 @@ export default function VideoCta() {
     >
       <motion.img
         src="/images/team.jpg"
-        alt="The Aaron Kirman Group"
+        alt="Luxury estate interior"
         style={{ y: imgY }}
         className="absolute -top-[10%] left-0 h-[120%] w-full object-cover"
       />

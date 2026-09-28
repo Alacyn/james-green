@@ -1,6 +1,6 @@
 import { Reveal } from "./Reveal";
 
-const IG_URL = "https://www.instagram.com/aaronkirman/";
+const IG_URL = "https://www.instagram.com/jamesgreen/";
 const TILES = ["/images/team.jpg", "/images/hero.jpg", "/images/network.jpg"];
 
 export default function InstagramFeed() {
@@ -21,7 +21,7 @@ export default function InstagramFeed() {
                 className="group mt-3 inline-block"
               >
                 <h2 className="font-serif text-4xl font-light text-[#F5F0EA] transition-colors duration-300 group-hover:text-bronze-light sm:text-5xl">
-                  @aaronkirman
+                  @jamesgreen
                 </h2>
               </a>
             </div>
@@ -49,7 +49,7 @@ export default function InstagramFeed() {
               >
                 <img
                   src={src}
-                  alt="Aaron Kirman Group on Instagram"
+                  alt="James Green on Instagram"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </a>

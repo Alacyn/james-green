@@ -1,46 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Search } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { EASE, scrollToId } from "./Reveal";
 
-const MENU_COLS = [
-  {
-    groups: [
-      { header: "Home", href: "top", links: [] },
-      {
-        header: "Aaron Kirman Group",
-        href: "#about",
-        links: [
-          { label: "Aaron Kirman Group", href: "#about" },
-          { label: "Our Culture", href: "#culture" },
-          { label: "Find Your Place", href: "#connect" },
-        ],
-      },
-    ],
-  },
-  {
-    groups: [
-      {
-        header: "Listings",
-        href: "#featured",
-        links: [
-          { label: "Featured \u2014 $24B Sold", href: "#featured" },
-          { label: "Unmatched Sales", href: "#network" },
-        ],
-      },
-      {
-        header: "Media",
-        href: "#video",
-        links: [{ label: "Empowering Your Success", href: "#video" }],
-      },
-    ],
-  },
-  {
-    groups: [
-      { header: "Market Insights", href: "#featured", links: [] },
-      { header: "Contact", href: "#connect", links: [] },
-    ],
-  },
+const LINKS = [
+  { label: "Home", href: "top" },
+  { label: "About", href: "#about" },
+  { label: "Featured", href: "#featured" },
+  { label: "Connect", href: "#connect" },
 ];
 
 export default function Navbar() {
@@ -76,7 +43,6 @@ export default function Navbar() {
   };
 
   const solid = scrolled && !open;
-  const tone = solid ? "text-ink" : "text-white";
 
   return (
     <>
@@ -86,56 +52,52 @@ export default function Navbar() {
           solid ? "bg-white/90 shadow-[0_1px_0_rgba(0,0,0,0.05)] backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <div className="relative mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-5 sm:px-8">
-          <nav className="hidden items-center gap-9 lg:flex">
-            {["About", "Listings", "Media"].map((label) => (
-              <button
-                key={label}
-                data-testid={`nav-link-${label.toLowerCase()}`}
-                onClick={() => setOpen(true)}
-                className={`group flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[0.22em] transition-colors duration-300 ${tone} ${
-                  solid ? "text-ink/80 hover:text-ink" : "text-white/85 hover:text-white"
-                }`}
-              >
-                {label}
-                <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-300 group-hover:translate-y-0.5" />
-              </button>
-            ))}
-          </nav>
-
+        <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
           <button
             data-testid="nav-logo-home"
             onClick={() => go("top")}
-            aria-label="Aaron Kirman — home"
-            className="absolute left-1/2 -translate-x-1/2"
+            aria-label="James Green — home"
+            className="flex items-baseline gap-2"
           >
-            <span className={`font-serif text-[22px] tracking-[-0.01em] transition-colors duration-500 sm:text-[26px] ${tone}`}>
-              AARON<span className="tracking-[0.02em]">KIRMAN</span>
+            <span className={`font-serif text-[20px] tracking-[0.08em] transition-colors duration-500 sm:text-[22px] ${solid ? "text-ink" : "text-white"}`}>
+              JAMES GREEN
+            </span>
+            <span className={`hidden font-sans text-[9px] uppercase tracking-[0.4em] transition-colors duration-500 sm:block ${solid ? "text-ink/50" : "text-white/60"}`}>
+              Global
             </span>
           </button>
 
-          <div className="flex items-center gap-5 sm:gap-7">
+          <div className="flex items-center gap-8">
+            <nav className="hidden items-center gap-8 lg:flex">
+              {LINKS.map((l) => (
+                <button
+                  key={l.href}
+                  data-testid={`nav-link-${l.label.toLowerCase()}`}
+                  onClick={() => go(l.href)}
+                  className={`font-sans text-[11px] uppercase tracking-[0.22em] transition-colors duration-300 ${
+                    solid ? "text-ink/80 hover:text-ink" : "text-white/85 hover:text-white"
+                  }`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </nav>
             <button
-              data-testid="nav-link-contact"
+              data-testid="nav-cta-begin"
               onClick={() => go("#connect")}
-              className={`hidden font-sans text-[11px] uppercase tracking-[0.22em] transition-colors duration-300 sm:block ${
-                solid ? "text-ink/80 hover:text-ink" : "text-white/85 hover:text-white"
+              className={`hidden border px-6 py-3 font-sans text-[10px] uppercase tracking-[0.28em] transition-all duration-500 md:block ${
+                solid
+                  ? "border-ink/60 text-ink hover:bg-ink hover:text-white"
+                  : "border-white/70 text-white hover:bg-white/10"
               }`}
             >
-              Contact
-            </button>
-            <button
-              data-testid="nav-search-button"
-              aria-label="Search"
-              className={`hidden transition-colors sm:block ${solid ? "text-ink/70 hover:text-ink" : "text-white/85 hover:text-white"}`}
-            >
-              <Search className="h-[18px] w-[18px]" />
+              Begin a Conversation
             </button>
             <button
               data-testid="nav-toggle"
               className={`flex h-11 w-11 items-center justify-center transition-all duration-300 lg:hidden ${
                 open ? "pointer-events-none opacity-0" : ""
-              } ${tone}`}
+              } ${solid ? "text-ink" : "text-white"}`}
               onClick={() => setOpen(true)}
               aria-label="Open menu"
             >
@@ -154,45 +116,35 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: EASE }}
-              className="fixed inset-0 z-40 overflow-y-auto bg-[#8a8a8a]/60 backdrop-blur-2xl"
+              className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-coal/95 backdrop-blur-xl"
             >
-            <div className="mx-auto flex min-h-full max-w-[1400px] flex-col justify-center px-8 pb-16 pt-28">
-              <div className="grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-3">
-                {MENU_COLS.map((col, ci) => (
-                  <div key={ci} className="flex flex-col gap-9">
-                    {col.groups.map((group, gi) => (
-                      <div key={gi} className="overflow-hidden">
-                        <motion.button
-                          initial={{ y: "110%", opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          exit={{ y: "110%", opacity: 0 }}
-                          transition={{ duration: 0.7, delay: 0.05 * (ci + gi), ease: EASE }}
-                          data-testid={`menu-group-${group.header.toLowerCase().replace(/\s+/g, "-")}`}
-                          onClick={() => go(group.href)}
-                          className="block text-left font-serif text-xl uppercase tracking-[0.08em] text-white sm:text-2xl"
-                        >
-                          {group.header}
-                        </motion.button>
-                        {group.links.length > 0 && (
-                          <div className="mt-4 flex flex-col gap-3">
-                            {group.links.map((l) => (
-                              <button
-                                key={l.label}
-                                data-testid={`menu-link-${l.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                                onClick={() => go(l.href)}
-                                className="block text-left font-sans text-sm font-light text-white/85 transition-colors duration-300 hover:text-white"
-                              >
-                                {l.label}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
+              <nav className="flex flex-col items-center gap-2">
+                {LINKS.map((l, i) => (
+                  <div key={l.href} className="overflow-hidden">
+                    <motion.button
+                      initial={{ y: "110%" }}
+                      animate={{ y: 0 }}
+                      exit={{ y: "110%" }}
+                      transition={{ duration: 0.6, delay: 0.07 * i, ease: EASE }}
+                      data-testid={`mobile-link-${l.label.toLowerCase()}`}
+                      onClick={() => go(l.href)}
+                      className="block py-2 text-center font-serif text-4xl font-light uppercase tracking-[0.06em] text-[#F5F0EA]"
+                    >
+                      {l.label}
+                    </motion.button>
                   </div>
                 ))}
-              </div>
-            </div>
+              </nav>
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                data-testid="mobile-cta-begin"
+                onClick={() => go("#connect")}
+                className="mt-10 border border-bronze-light/70 px-8 py-4 font-sans text-[11px] uppercase tracking-[0.28em] text-bronze-light"
+              >
+                Begin a Conversation
+              </motion.button>
             </motion.div>
             <motion.button
               data-testid="menu-close"
@@ -202,7 +154,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed right-6 top-5 z-[60] flex h-11 w-11 items-center justify-center text-white sm:right-8"
+              className="fixed right-5 top-4 z-[60] flex h-11 w-11 items-center justify-center text-white sm:right-8"
             >
               <X className="h-6 w-6" />
             </motion.button>

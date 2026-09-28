@@ -99,7 +99,7 @@ export default function ConnectForm() {
                     className="mt-1 h-4 w-4 shrink-0 cursor-pointer appearance-none border border-white/40 bg-transparent transition-colors checked:border-bronze checked:bg-bronze"
                   />
                   <span className="text-xs font-light leading-relaxed text-white/50">
-                    I agree to be contacted by Aaron Kirman Group via call, email, and
+                    I agree to be contacted by James Green via call, email, and
                     text for real estate services. To opt out, you can reply
                     &lsquo;stop&rsquo; at any time or reply &lsquo;help&rsquo; for
                     assistance. Message and data rates may apply. Message frequency may

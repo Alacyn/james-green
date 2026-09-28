@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { EASE } from "./Reveal";
+import { ArrowRight } from "lucide-react";
+import { EASE, scrollToId } from "./Reveal";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -20,36 +21,50 @@ export default function Hero() {
           alt="Luxury estate interior"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/35 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-black/25" />
+        <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/55 via-black/25 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/35 to-transparent" />
       </motion.div>
 
       <motion.div
         style={{ opacity: fade }}
-        className="relative z-10 flex flex-col items-center px-6 text-center"
+        className="relative z-10 flex -translate-y-10 flex-col items-center px-6 text-center sm:-translate-y-14"
       >
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.35, ease: EASE }}
+          data-testid="hero-advisor-line"
+          className="font-sans text-xs uppercase tracking-[0.45em] text-white/95 sm:text-sm"
+        >
+          Global Real Estate Advisor
+        </motion.p>
+
         <h1
           data-testid="hero-title"
-          className="overflow-hidden font-serif text-5xl font-normal uppercase tracking-[0.04em] text-white sm:text-6xl lg:text-7xl"
+          className="mt-6 overflow-hidden font-serif text-5xl font-normal uppercase tracking-[0.04em] text-white sm:text-6xl lg:text-7xl"
         >
           <motion.span
             className="block"
             initial={{ y: "112%" }}
             animate={{ y: 0 }}
-            transition={{ duration: 1.3, delay: 0.4, ease: EASE }}
+            transition={{ duration: 1.3, delay: 0.55, ease: EASE }}
           >
             James Green
           </motion.span>
         </h1>
-        <motion.p
+
+        <motion.button
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.95, ease: EASE }}
-          className="mt-6 font-sans text-[11px] uppercase tracking-[0.42em] text-white/85 sm:text-xs"
+          transition={{ duration: 1, delay: 1.15, ease: EASE }}
+          data-testid="hero-explore-button"
+          onClick={() => scrollToId("#about")}
+          className="group mt-10 flex items-center gap-3 border border-white/60 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-white transition-all duration-500 hover:border-white hover:bg-white/10"
         >
-          Global Real Estate Advisor
-        </motion.p>
+          Explore
+          <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+        </motion.button>
       </motion.div>
 
       <motion.div

@@ -35,10 +35,12 @@
 
 ## Implemented (2026-09-28)
 - All sections above; removed non-original flourishes after user feedback (marquee, hero subtitle, cursor-follow previews, footer wordmark, extra about line).
-- Full light-theme redesign after user shared real-site screenshots: Bodoni Moda + Montserrat, centered AARONKIRMAN wordmark, centered About, text-left/image-right Network, centered dark stats, sticky Let's Connect pill, AK favicon on white.
-- Hero v3 per user request: user-supplied interior photo as FULL-BLEED hero (no white frame), transparent navbar (white text) that turns white/dark on scroll, centered "James Green" masked-reveal heading with "Global Real Estate Advisor" subline, frosted-gray fullscreen menu overlay matching the original site's menu (3-column groups), close button layered above the header (z-60) to fix intercepted clicks.
+- Full light-theme redesign after user shared real-site screenshots: Bodoni Moda + Montserrat, centered About, text-left/image-right Network, centered dark stats, sticky Let's Connect pill, favicon.
+- Hero v3 per user request: user-supplied interior photo as FULL-BLEED hero (no white frame), transparent navbar (white text) that turns white/dark on scroll.
+- Hero v4 (Kristin-style, per user reference screenshot): dark gradient at top blending nav into photo; "Global Real Estate Advisor" eyebrow ABOVE the name, brighter/whiter; name kept at text-7xl max (user rejected larger size); name block raised slightly above center; EXPLORE outlined button; single-page flat nav (Home/About/Featured/Connect + "Begin a Conversation" outlined button) with NO dropdowns; simple flat mobile menu; all Aaron Kirman branding removed (nav wordmark -> JAMES GREEN, footer, IG handle -> @jamesgreen, consent text, page title, JG favicon).
 - POST /api/connect with camelCase alias support (422 bug found via UI test, fixed, re-verified).
 - No horizontal overflow at 1440px or 390px; form success toast verified through the UI; inquiry persisted to MongoDB.
+- NOTE: About section ("The Rise of AKG" story) still contains the original AKG copy as a placeholder — needs James's real bio from the user; not replaced to avoid inventing credentials. Phone (424) 249-7162 is also a placeholder from the template.
 
 ## Backlog
 - P2: Duplicate light "Find Your Place" form variant (original renders the form twice, dark + light).

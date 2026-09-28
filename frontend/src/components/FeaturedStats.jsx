@@ -68,8 +68,8 @@ export default function FeaturedStats() {
             home sales
           </h2>
           <p className="mx-auto mt-8 max-w-2xl text-[15px] font-light leading-[1.9] text-white/55 sm:text-base">
-            Aaron Kirman represents the finest estates across the globe and was ranked
-            in the top 5 luxury real estate agents in the US by the Wall Street Journal.
+            Representing the finest estates across the globe — recognized among the
+            top luxury real estate agents in the United States.
           </p>
         </Reveal>
 
