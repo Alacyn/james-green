@@ -128,7 +128,7 @@ export default function ConnectForm() {
                   type="submit"
                   data-testid="submit-connect-form"
                   disabled={loading}
-                  className="flex w-full items-center justify-center gap-3 bg-bronze px-10 py-4 font-sans text-xs uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500 hover:bg-bronze/85 disabled:opacity-60 sm:w-auto"
+                  className="flex w-full items-center justify-center gap-3 bg-bronze px-10 py-4 font-sans text-xs uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500 disabled:opacity-60 sm:w-auto"
                 >
                   {loading && <Loader2 className="h-4 w-4 animate-spin" />}
                   {loading ? "Submitting" : "Submit"}

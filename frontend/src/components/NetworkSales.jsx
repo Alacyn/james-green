@@ -51,7 +51,7 @@ export default function NetworkSales() {
             <button
               data-testid="meet-james-cta"
               onClick={() => scrollToId("#contact")}
-              className="group mt-10 flex items-center gap-3 bg-bronze px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500 hover:bg-bronze/85"
+              className="group mt-10 flex items-center gap-3 bg-bronze px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
             >
               Start the Conversation
               <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
