@@ -4,25 +4,25 @@ const PANELS = [
   {
     label: "Meet",
     href: "#about",
-    img: "/images/hero.jpg",
+    img: "/images/panel-meet.png",
     copy: "Two decades of client-first experience across financial services, lending, relocation, and advocacy.",
   },
   {
     label: "Buy",
     href: "#buy",
-    img: "/images/interior.png",
+    img: "/images/panel-buy.png",
     copy: "From first home to forever home — clear guidance through every step of the purchase.",
   },
   {
     label: "Sell",
     href: "#sell",
-    img: "/images/network.jpg",
+    img: "/images/panel-sell.png",
     copy: "Strategy, preparation, and market clarity to position your home at its best.",
   },
   {
     label: "Connect",
     href: "#contact",
-    img: "/images/team.jpg",
+    img: "/images/panel-connect.png",
     copy: "Tell James about your goals — he will personally follow up.",
   },
 ];

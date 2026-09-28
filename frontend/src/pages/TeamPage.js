@@ -4,7 +4,7 @@ import About from "@/components/About";
 import NetworkSales from "@/components/NetworkSales";
 import ExplorePanels from "@/components/ExplorePanels";
 import FeaturedStats from "@/components/FeaturedStats";
-import IndexList from "@/components/IndexList";
+import ClientExperience from "@/components/ClientExperience";
 import BuySection from "@/components/BuySection";
 import SellSection from "@/components/SellSection";
 import FeaturedProperties from "@/components/FeaturedProperties";
@@ -21,7 +21,7 @@ export default function TeamPage() {
         <ExplorePanels />
         <NetworkSales />
         <FeaturedStats />
-        <IndexList />
+        <ClientExperience />
         <BuySection />
         <SellSection />
         <FeaturedProperties />
