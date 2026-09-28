@@ -7,8 +7,8 @@ export default function YouTubeSection() {
   return (
     <section data-testid="youtube-section" className="relative overflow-hidden bg-[#4A3423]">
       <img
-        src="/images/james-wide.png"
-        alt="James Green — North Texas YouTube series"
+        src="/images/youtube-bg.png"
+        alt="North Texas living — James Green YouTube series"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-[#4A3423]/70" />

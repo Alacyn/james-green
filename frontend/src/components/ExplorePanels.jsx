@@ -9,13 +9,13 @@ const PANELS = [
   },
   {
     label: "Buy",
-    href: "#properties",
+    href: "#buy",
     img: "/images/interior.png",
     copy: "From first home to forever home — clear guidance through every step of the purchase.",
   },
   {
     label: "Sell",
-    href: "#network",
+    href: "#sell",
     img: "/images/network.jpg",
     copy: "Strategy, preparation, and market clarity to position your home at its best.",
   },

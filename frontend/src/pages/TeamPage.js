@@ -5,7 +5,10 @@ import NetworkSales from "@/components/NetworkSales";
 import ExplorePanels from "@/components/ExplorePanels";
 import FeaturedStats from "@/components/FeaturedStats";
 import IndexList from "@/components/IndexList";
+import BuySection from "@/components/BuySection";
+import SellSection from "@/components/SellSection";
 import FeaturedProperties from "@/components/FeaturedProperties";
+import YouTubeSection from "@/components/YouTubeSection";
 import Footer from "@/components/Footer";
 
 export default function TeamPage() {
@@ -20,7 +23,10 @@ export default function TeamPage() {
         <NetworkSales />
         <FeaturedStats />
         <IndexList />
+        <BuySection />
+        <SellSection />
         <FeaturedProperties />
+        <YouTubeSection />
       </main>
       <Footer />
     </div>

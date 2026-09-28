@@ -4,8 +4,8 @@ import { Reveal, scrollToId } from "./Reveal";
 const NAV = [
   { label: "Home", href: "top" },
   { label: "About", href: "#about" },
-  { label: "Buy", href: "#properties" },
-  { label: "Sell", href: "#network" },
+  { label: "Buy", href: "#buy" },
+  { label: "Sell", href: "#sell" },
   { label: "Contact", href: "#contact" },
 ];
 

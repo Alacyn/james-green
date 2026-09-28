@@ -3,7 +3,7 @@ import { Reveal, Eyebrow } from "./Reveal";
 export default function About() {
   return (
     <section data-testid="thoughtful-guidance-section" id="network" className="bg-white text-ink">
-      <div className="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28 lg:py-32">
+      <div className="mx-auto max-w-4xl px-8 py-20 text-center sm:px-10 sm:py-28 lg:py-32">
         <Reveal y={24}>
           <Eyebrow>Thoughtful Guidance</Eyebrow>
         </Reveal>
@@ -13,7 +13,7 @@ export default function About() {
           </h2>
         </Reveal>
         <Reveal delay={0.18}>
-          <p className="mx-auto mt-10 max-w-2xl text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base">
+          <p className="mx-auto mt-10 max-w-2xl text-left text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base">
             A move is rarely just about a property. It&rsquo;s about where
             you&rsquo;re going, what matters to you, and making informed decisions
             along the way. James Green brings clarity, perspective, and a personal
