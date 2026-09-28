@@ -4,8 +4,9 @@ import { Reveal, scrollToId } from "./Reveal";
 const NAV = [
   { label: "Home", href: "top" },
   { label: "About", href: "#about" },
-  { label: "Featured", href: "#featured" },
-  { label: "Connect", href: "#connect" },
+  { label: "Buy", href: "#featured" },
+  { label: "Sell", href: "#network" },
+  { label: "Contact", href: "#connect" },
 ];
 
 export default function Footer() {

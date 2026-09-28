@@ -28,21 +28,21 @@ export default function Hero() {
 
       <motion.div
         style={{ opacity: fade }}
-        className="relative z-10 flex -translate-y-10 flex-col items-center px-6 text-center sm:-translate-y-14"
+        className="relative z-10 flex flex-col items-center px-6 text-center"
       >
         <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.35, ease: EASE }}
           data-testid="hero-advisor-line"
-          className="font-sans text-xs uppercase tracking-[0.45em] text-white/95 sm:text-sm"
+          className="whitespace-nowrap font-sans text-[11px] uppercase tracking-[0.3em] text-white/95 sm:text-sm sm:tracking-[0.45em]"
         >
           Global Real Estate Advisor
         </motion.p>
 
         <h1
           data-testid="hero-title"
-          className="mt-6 overflow-hidden font-serif text-5xl font-normal uppercase tracking-[0.04em] text-white sm:text-6xl lg:text-7xl"
+          className="mt-6 overflow-hidden whitespace-nowrap font-serif text-4xl font-normal uppercase tracking-[0.04em] text-white sm:text-6xl lg:text-7xl"
         >
           <motion.span
             className="block"
