@@ -54,8 +54,8 @@ export default function ConnectForm() {
         <div className="lg:col-span-5">
           <Reveal>
             <Eyebrow light>Connect</Eyebrow>
-            <h2 className="mt-5 font-serif text-4xl font-light leading-[1.02] sm:text-5xl">
-              Find Your <span className="italic text-bronze-light">Place</span>
+            <h2 className="mt-5 font-sans text-lg font-light uppercase tracking-[0.3em] sm:text-2xl">
+              Find Your <span className="text-bronze-light">Place</span>
             </h2>
             <span className="mt-9 block h-px w-24 bg-bronze-light" />
             <p className="mt-9 text-lg font-light leading-relaxed text-white/70 sm:text-xl">
@@ -73,7 +73,7 @@ export default function ConnectForm() {
               <a
                 data-testid="connect-phone-link"
                 href="tel:4242497162"
-                className="font-serif text-3xl font-light text-white transition-colors duration-300 hover:text-bronze-light sm:text-4xl"
+                className="font-sans text-2xl font-light tracking-[0.12em] text-white transition-colors duration-300 hover:text-bronze-light sm:text-3xl"
               >
                 (424) 249-7162
               </a>

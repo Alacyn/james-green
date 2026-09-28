@@ -42,7 +42,7 @@ export default function Hero() {
 
         <h1
           data-testid="hero-title"
-          className="mt-3 overflow-hidden whitespace-nowrap font-serif text-4xl font-normal uppercase tracking-[0.14em] text-white sm:mt-4 sm:text-6xl lg:text-7xl"
+          className="mt-3 overflow-hidden whitespace-nowrap font-sans text-3xl font-light uppercase tracking-[0.18em] text-white sm:mt-4 sm:text-5xl sm:tracking-[0.22em] lg:text-6xl"
         >
           <motion.span
             className="block"

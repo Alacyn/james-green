@@ -8,7 +8,7 @@ export default function NetworkSales() {
           <Eyebrow>Unparalleled Network</Eyebrow>
         </Reveal>
         <Reveal delay={0.08} y={30}>
-          <h2 className="mt-7 font-serif text-3xl font-normal uppercase tracking-[0.04em] sm:text-5xl">
+          <h2 className="mt-7 font-sans text-xl font-light uppercase tracking-[0.3em] sm:text-3xl">
             The Rise of <span className="text-bronze">AKG</span>
           </h2>
         </Reveal>

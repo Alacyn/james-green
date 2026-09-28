@@ -27,7 +27,7 @@ function Counter({ value, format, testid }) {
     <h3
       ref={ref}
       data-testid={testid}
-      className="font-serif text-4xl font-normal text-[#F1E6D7] sm:text-5xl lg:text-[56px]"
+      className="font-sans text-3xl font-light tracking-[0.1em] text-[#F1E6D7] sm:text-4xl lg:text-5xl"
     >
       {format(v)}
     </h3>
@@ -63,7 +63,7 @@ export default function FeaturedStats() {
           <Eyebrow light>Featured</Eyebrow>
         </Reveal>
         <Reveal delay={0.08} y={30}>
-          <h2 className="mt-7 font-serif text-3xl font-normal uppercase tracking-[0.04em] text-[#F1E6D7] sm:text-5xl">
+          <h2 className="mt-7 font-sans text-lg font-light uppercase tracking-[0.3em] text-[#F1E6D7] sm:text-3xl">
             With over <span className="text-bronze-light">$24 Billion</span> in luxury
             home sales
           </h2>

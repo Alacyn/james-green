@@ -42,7 +42,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <Reveal y={24}>
-              <p className="font-serif text-2xl uppercase tracking-[0.18em]">James Green</p>
+              <p className="font-sans text-lg font-light uppercase tracking-[0.3em] text-[#F1E6D7]">James Green</p>
               <p className="mt-3 font-sans text-[10px] uppercase tracking-[0.42em] text-bronze-light">
                 Global Real Estate Advisor
               </p>
