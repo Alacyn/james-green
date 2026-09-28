@@ -54,7 +54,7 @@ export default function ConnectForm() {
         <div className="lg:col-span-5">
           <Reveal>
             <Eyebrow light>Connect</Eyebrow>
-            <h2 className="mt-5 font-sans text-lg font-light uppercase tracking-[0.3em] sm:text-2xl">
+            <h2 className="mt-5 font-serif text-3xl font-normal uppercase tracking-[0.02em] sm:text-5xl">
               Find Your <span className="text-bronze-light">Place</span>
             </h2>
             <span className="mt-9 block h-px w-24 bg-bronze-light" />

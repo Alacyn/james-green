@@ -63,7 +63,7 @@ export default function FeaturedStats() {
           <Eyebrow light>Featured</Eyebrow>
         </Reveal>
         <Reveal delay={0.08} y={30}>
-          <h2 className="mt-7 font-sans text-lg font-light uppercase tracking-[0.3em] text-[#F1E6D7] sm:text-3xl">
+          <h2 className="mt-7 font-serif text-3xl font-normal uppercase leading-[1.15] tracking-[0.02em] text-[#F1E6D7] sm:text-5xl">
             With over <span className="text-bronze-light">$24 Billion</span> in luxury
             home sales
           </h2>
