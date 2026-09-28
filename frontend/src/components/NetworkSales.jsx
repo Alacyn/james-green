@@ -50,14 +50,6 @@ export default function NetworkSales() {
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60 sm:text-base">
-              For James, the goal is not simply to complete a transaction. It is to be the
-              kind of advisor clients trust to help them navigate an important
-              decision&mdash;and the one they feel confident turning to again when the
-              next one comes.
-            </p>
-          </Reveal>
-          <Reveal delay={0.35}>
             <div className="mt-10 space-y-6">
               <button
                 data-testid="meet-james-cta"
