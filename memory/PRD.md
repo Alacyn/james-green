@@ -35,7 +35,8 @@
 
 ## Implemented (2026-09-28)
 - All sections above; removed non-original flourishes after user feedback (marquee, hero subtitle, cursor-follow previews, footer wordmark, extra about line).
-- Full light-theme redesign after user shared real-site screenshots: Bodoni Moda + Montserrat, white navbar with centered AARONKIRMAN wordmark, inset hero, centered About, text-left/image-right Network, centered dark stats, sticky Let's Connect pill, AK favicon on white.
+- Full light-theme redesign after user shared real-site screenshots: Bodoni Moda + Montserrat, centered AARONKIRMAN wordmark, centered About, text-left/image-right Network, centered dark stats, sticky Let's Connect pill, AK favicon on white.
+- Hero v3 per user request: user-supplied interior photo as FULL-BLEED hero (no white frame), transparent navbar (white text) that turns white/dark on scroll, centered "James Green" masked-reveal heading with "Global Real Estate Advisor" subline, frosted-gray fullscreen menu overlay matching the original site's menu (3-column groups), close button layered above the header (z-60) to fix intercepted clicks.
 - POST /api/connect with camelCase alias support (422 bug found via UI test, fixed, re-verified).
 - No horizontal overflow at 1440px or 390px; form success toast verified through the UI; inquiry persisted to MongoDB.
 

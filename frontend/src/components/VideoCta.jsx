@@ -25,6 +25,7 @@ export default function VideoCta() {
   return (
     <section
       ref={ref}
+      id="video"
       data-testid="video-cta-section"
       className="relative flex h-[80vh] min-h-[520px] items-center justify-center overflow-hidden bg-black"
     >
