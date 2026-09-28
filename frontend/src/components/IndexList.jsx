@@ -1,12 +1,12 @@
 import { Reveal } from "./Reveal";
 
 const ITEMS = [
-  "Relationships",
-  "Professionalism",
-  "Integrity",
-  "Personal Service",
-  "Clarity",
-  "Strategy",
+  "Leadership",
+  "Brand",
+  "Culture",
+  "Marketing",
+  "Empowerment",
+  "Technology",
 ];
 
 export default function IndexList() {
@@ -17,7 +17,7 @@ export default function IndexList() {
           {ITEMS.map((title, i) => (
             <Reveal key={title} delay={0.05 * i} y={30}>
               <div
-                data-testid={`index-row-${title.toLowerCase().replace(/\s+/g, "-")}`}
+                data-testid={`index-row-${title.toLowerCase()}`}
                 className="group flex cursor-default items-center justify-center border-t border-ink/10 py-8 sm:py-10"
               >
                 <h3 className="text-center font-serif text-2xl font-normal uppercase tracking-[0.04em] text-ink transition-all duration-500 group-hover:italic group-hover:text-bronze sm:text-3xl lg:text-4xl">

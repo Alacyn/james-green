@@ -1,6 +1,6 @@
 import { Reveal } from "./Reveal";
 
-const IG_URL = "https://www.instagram.com/jamesagreenrealestate";
+const IG_URL = "https://www.instagram.com/jamesgreen/";
 const TILES = ["/images/team.jpg", "/images/hero.jpg", "/images/network.jpg"];
 
 export default function InstagramFeed() {
@@ -21,7 +21,7 @@ export default function InstagramFeed() {
                 className="group mt-3 inline-block"
               >
                 <h2 className="font-serif text-4xl font-light text-[#F5F0EA] transition-colors duration-300 group-hover:text-bronze-light sm:text-5xl">
-                  @jamesagreenrealestate
+                  @jamesgreen
                 </h2>
               </a>
             </div>
