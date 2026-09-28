@@ -9,10 +9,11 @@ import VideoCta from "@/components/VideoCta";
 import ConnectForm from "@/components/ConnectForm";
 import InstagramFeed from "@/components/InstagramFeed";
 import Footer from "@/components/Footer";
+import StickyConnectBar from "@/components/StickyConnectBar";
 
 export default function TeamPage() {
   return (
-    <div className="bg-coal font-sans text-[#F5F0EA] antialiased">
+    <div className="bg-white font-sans text-ink antialiased">
       <div className="grain" aria-hidden="true" />
       <Navbar />
       <main>
@@ -27,6 +28,7 @@ export default function TeamPage() {
         <InstagramFeed />
       </main>
       <Footer />
+      <StickyConnectBar />
     </div>
   );
 }

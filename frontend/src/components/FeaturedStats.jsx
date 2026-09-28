@@ -27,7 +27,7 @@ function Counter({ value, format, testid }) {
     <h3
       ref={ref}
       data-testid={testid}
-      className="font-serif text-5xl font-light leading-none text-[#F5F0EA] sm:text-6xl lg:text-7xl"
+      className="font-serif text-4xl font-normal text-[#F5F0EA] sm:text-5xl lg:text-[56px]"
     >
       {format(v)}
     </h3>
@@ -57,29 +57,28 @@ const STATS = [
 
 export default function FeaturedStats() {
   return (
-    <section data-testid="featured-stats-section" id="featured" className="bg-ink">
-      <div className="mx-auto max-w-[1600px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
-        <div className="max-w-3xl">
-          <Reveal>
-            <Eyebrow light>Featured</Eyebrow>
-            <h2 className="mt-5 font-serif text-4xl font-light leading-[1.05] sm:text-5xl lg:text-6xl">
-              With over <span className="italic text-bronze-light">$24 Billion</span> in
-              luxury home sales
-            </h2>
-            <p className="mt-8 max-w-xl text-base font-light leading-relaxed text-white/65 sm:text-lg">
-              Aaron Kirman represents the finest estates across the globe and was
-              ranked in the top 5 luxury real estate agents in the US by the Wall
-              Street Journal.
-            </p>
-          </Reveal>
-        </div>
+    <section data-testid="featured-stats-section" id="featured" className="bg-coal">
+      <div className="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28 lg:py-32">
+        <Reveal y={24}>
+          <Eyebrow light>Featured</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.08} y={30}>
+          <h2 className="mt-7 font-serif text-3xl font-normal uppercase tracking-[0.04em] text-[#F5F0EA] sm:text-5xl">
+            With over <span className="text-bronze-light">$24 Billion</span> in luxury
+            home sales
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-[15px] font-light leading-[1.9] text-white/55 sm:text-base">
+            Aaron Kirman represents the finest estates across the globe and was ranked
+            in the top 5 luxury real estate agents in the US by the Wall Street Journal.
+          </p>
+        </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-10 sm:mt-20 sm:grid-cols-3 sm:gap-8">
+        <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
           {STATS.map((s, i) => (
-            <Reveal key={s.testid} delay={0.12 * i} data-testid={s.testid}>
-              <div className="border-t border-white/15 pt-8 sm:pr-6">
+            <Reveal key={s.testid} delay={0.12 * i}>
+              <div className="flex flex-col items-center">
                 <Counter value={s.value} format={s.format} testid={s.testid} />
-                <p className="mt-4 font-sans text-[11px] uppercase tracking-[0.3em] text-white/50">
+                <p className="mt-4 font-sans text-[10px] uppercase tracking-[0.28em] text-white/50">
                   {s.label}
                 </p>
               </div>

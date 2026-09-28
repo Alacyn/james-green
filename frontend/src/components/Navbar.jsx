@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { EASE, scrollToId } from "./Reveal";
 
-const LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Network", href: "#network" },
-  { label: "Featured", href: "#featured" },
-  { label: "Culture", href: "#culture" },
-  { label: "Connect", href: "#connect" },
+const MENU = [
+  { label: "Aaron Kirman Group", href: "#about" },
+  { label: "Unmatched Sales", href: "#network" },
+  { label: "Featured \u2014 $24B Sold", href: "#featured" },
+  { label: "Our Culture", href: "#culture" },
+  { label: "Find Your Place", href: "#connect" },
 ];
-
-const go = (href, after) => {
-  if (after) after();
-  setTimeout(() => scrollToId(href), 60);
-};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -42,59 +37,61 @@ export default function Navbar() {
       <header
         data-testid="main-navigation"
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "border-b border-white/10 bg-black/70 backdrop-blur-md"
-            : "border-b border-transparent bg-transparent"
+          scrolled ? "bg-white/90 shadow-[0_1px_0_rgba(0,0,0,0.05)] backdrop-blur-md" : "bg-white"
         }`}
       >
-        <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between px-6 sm:px-10 lg:px-16">
-          <button
-            data-testid="nav-logo-home"
-            onClick={() => window.__lenis ? window.__lenis.scrollTo(0, { duration: 1.6 }) : window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-3"
-            aria-label="Aaron Kirman Group — home"
-          >
-            <svg viewBox="0 0 40 40" className="h-9 w-9" aria-hidden="true">
-              <rect x="0.75" y="0.75" width="38.5" height="38.5" fill="none" stroke="#B18463" strokeWidth="1.4" />
-              <text x="20" y="26" textAnchor="middle" fontFamily="Cormorant Garamond, Georgia, serif" fontSize="16" letterSpacing="1.5" fill="#F5F0EA">
-                AK
-              </text>
-            </svg>
-            <span className="hidden flex-col leading-none sm:flex">
-              <span className="font-serif text-lg tracking-[0.14em]">AARON KIRMAN</span>
-              <span className="font-sans text-[9px] uppercase tracking-[0.5em] text-bronze-light">Group</span>
-            </span>
-          </button>
-
-          <nav className="hidden items-center gap-10 lg:flex">
-            {LINKS.map((l) => (
+        <div className="relative mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-5 sm:px-8">
+          <nav className="hidden items-center gap-9 lg:flex">
+            {["About", "Listings", "Media"].map((label) => (
               <button
-                key={l.href}
-                data-testid={`nav-link-${l.label.toLowerCase()}`}
-                onClick={() => go(l.href)}
-                className="group relative font-sans text-[11px] uppercase tracking-[0.3em] text-white/70 transition-colors duration-300 hover:text-white"
+                key={label}
+                data-testid={`nav-link-${label.toLowerCase()}`}
+                onClick={() => setOpen(true)}
+                className="group flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[0.22em] text-ink/80 transition-colors duration-300 hover:text-ink"
               >
-                {l.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-bronze transition-all duration-500 group-hover:w-full" />
+                {label}
+                <ChevronDown className="h-3.5 w-3.5 text-ink/50 transition-transform duration-300 group-hover:translate-y-0.5" />
               </button>
             ))}
-            <button
-              data-testid="nav-cta-join"
-              onClick={() => go("#connect")}
-              className="border border-bronze/70 px-6 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-bronze-light transition-all duration-500 hover:bg-bronze hover:text-black"
-            >
-              Join AKG
-            </button>
           </nav>
 
           <button
-            data-testid="nav-toggle"
-            className="flex h-11 w-11 items-center justify-center text-white lg:hidden"
-            onClick={() => setOpen(!open)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            data-testid="nav-logo-home"
+            onClick={() =>
+              window.__lenis ? window.__lenis.scrollTo(0, { duration: 1.6 }) : window.scrollTo({ top: 0, behavior: "smooth" })
+            }
+            aria-label="Aaron Kirman — home"
+            className="absolute left-1/2 -translate-x-1/2"
           >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <span className="font-serif text-[22px] tracking-[-0.01em] text-ink sm:text-[26px]">
+              AARON<span className="tracking-[0.02em]">KIRMAN</span>
+            </span>
           </button>
+
+          <div className="flex items-center gap-5 sm:gap-7">
+            <button
+              data-testid="nav-link-contact"
+              onClick={() => scrollToId("#connect")}
+              className="hidden font-sans text-[11px] uppercase tracking-[0.22em] text-ink/80 transition-colors duration-300 hover:text-ink sm:block"
+            >
+              Contact
+            </button>
+            <button
+              data-testid="nav-search-button"
+              aria-label="Search"
+              className="hidden text-ink/70 transition-colors hover:text-ink sm:block"
+            >
+              <Search className="h-[18px] w-[18px]" />
+            </button>
+            <button
+              data-testid="nav-toggle"
+              className="flex h-11 w-11 items-center justify-center text-ink lg:hidden"
+              onClick={() => setOpen(!open)}
+              aria-label={open ? "Close menu" : "Open menu"}
+            >
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -106,35 +103,36 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: EASE }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-coal/98 px-8 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-center bg-coal/98 px-8 backdrop-blur-xl"
           >
+            <button
+              data-testid="menu-close"
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+              className="absolute right-6 top-5 flex h-11 w-11 items-center justify-center text-white lg:right-8"
+            >
+              <X className="h-6 w-6" />
+            </button>
             <nav className="flex flex-col gap-2">
-              {LINKS.map((l, i) => (
+              {MENU.map((l, i) => (
                 <div key={l.href} className="overflow-hidden">
                   <motion.button
                     initial={{ y: "110%" }}
                     animate={{ y: 0 }}
                     exit={{ y: "110%" }}
                     transition={{ duration: 0.7, delay: 0.06 * i, ease: EASE }}
-                    data-testid={`mobile-link-${l.label.toLowerCase()}`}
-                    onClick={() => go(l.href, () => setOpen(false))}
-                    className="block py-2 text-left font-serif text-5xl font-light uppercase text-[#F5F0EA]"
+                    data-testid={`menu-link-${i + 1}`}
+                    onClick={() => {
+                      setOpen(false);
+                      setTimeout(() => scrollToId(l.href), 60);
+                    }}
+                    className="block py-2 text-left font-serif text-3xl font-light uppercase tracking-wide text-[#F5F0EA] sm:text-4xl"
                   >
                     {l.label}
                   </motion.button>
                 </div>
               ))}
             </nav>
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              data-testid="mobile-cta-join"
-              onClick={() => go("#connect", () => setOpen(false))}
-              className="mt-10 w-full border border-bronze px-6 py-4 font-sans text-xs uppercase tracking-[0.3em] text-bronze-light"
-            >
-              Join AKG
-            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>

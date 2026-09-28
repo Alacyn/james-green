@@ -27,13 +27,13 @@ export default function Footer() {
             <Reveal y={24}>
               <div className="flex items-center gap-3">
                 <svg viewBox="0 0 40 40" className="h-10 w-10" aria-hidden="true">
-                  <rect x="0.75" y="0.75" width="38.5" height="38.5" fill="none" stroke="#B18463" strokeWidth="1.4" />
+                  <rect x="0.75" y="0.75" width="38.5" height="38.5" fill="none" stroke="#A8926E" strokeWidth="1.4" />
                   <text x="20" y="26" textAnchor="middle" fontFamily="Cormorant Garamond, Georgia, serif" fontSize="16" letterSpacing="1.5" fill="#F5F0EA">
                     AK
                   </text>
                 </svg>
                 <div className="leading-none">
-                  <p className="font-serif text-xl tracking-[0.14em]">AARON KIRMAN</p>
+                  <p className="font-serif text-xl tracking-[0.14em] text-[#F5F0EA]">AARON KIRMAN</p>
                   <p className="mt-1 font-sans text-[9px] uppercase tracking-[0.5em] text-bronze-light">Group</p>
                 </div>
               </div>

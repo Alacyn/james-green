@@ -8,10 +8,12 @@
 - **Luxury client / site owner (Aaron Kirman Group)**: wants the page to present the brokerage, its Christie's partnership, and its track record with the same content and structure as the original site.
 
 ## Core Requirements (static)
-1. Faithful 1:1 recreation of aaronkirman.com/team section order and copy.
-2. Luxury black/white + bronze (#B18463) aesthetic, editorial serif typography.
-3. Career contact form persisted to MongoDB via backend API.
-4. Premium motion: kinetic hero reveal, scroll parallax, animated stat counters, smooth (lenis) scrolling — all subordinate to content fidelity.
+1. Faithful 1:1 recreation of aaronkirman.com/team section order, copy, AND visual design (user provided reference screenshots of the real site).
+2. LIGHT theme: white page background, inset hero image with white margins, small serif title inside image bottom-left; white navbar with left dropdown links (About/Listings/Media), centered "AARONKIRMAN" serif wordmark, right Contact + search; dark sections only for stats/form/instagram/footer.
+3. Typography: Bodoni Moda (Didone serif, uppercase headings with bronze highlights) + Montserrat (light gray body); underlined letterspaced eyebrows; bronze accent #A8926E.
+4. Sticky bottom-left chrome: search circle + bronze "LET'S CONNECT" pill scrolling to the form.
+5. Career contact form persisted to MongoDB via backend API.
+6. Premium motion subordinate to fidelity: masked hero title reveal, subtle parallax, animated stat counters, lenis smooth scroll.
 
 ## Architecture
 - **Frontend**: React (CRA + craco), Tailwind, framer-motion, lenis, sonner. Single page `/` composed of section components in `frontend/src/components/`.
@@ -33,6 +35,7 @@
 
 ## Implemented (2026-09-28)
 - All sections above; removed non-original flourishes after user feedback (marquee, hero subtitle, cursor-follow previews, footer wordmark, extra about line).
+- Full light-theme redesign after user shared real-site screenshots: Bodoni Moda + Montserrat, white navbar with centered AARONKIRMAN wordmark, inset hero, centered About, text-left/image-right Network, centered dark stats, sticky Let's Connect pill, AK favicon on white.
 - POST /api/connect with camelCase alias support (422 bug found via UI test, fixed, re-verified).
 - No horizontal overflow at 1440px or 390px; form success toast verified through the UI; inquiry persisted to MongoDB.
 

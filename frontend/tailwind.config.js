@@ -15,15 +15,15 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)'
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        sans: ['Jost', 'Avenir', 'system-ui', 'sans-serif']
+        serif: ['"Bodoni Moda"', 'Didot', 'Georgia', 'serif'],
+        sans: ['Montserrat', 'Avenir', 'system-ui', 'sans-serif']
       },
       colors: {
-        bronze: '#B18463',
-        'bronze-light': '#C99E7D',
-        ink: '#0A0A0A',
-        coal: '#050505',
-        paper: '#F7F6F4',
+        bronze: '#A8926E',
+        'bronze-light': '#C2AE8C',
+        ink: '#1A1A1A',
+        coal: '#0A0A0A',
+        paper: '#FCFBFA',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

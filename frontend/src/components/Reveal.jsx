@@ -15,13 +15,13 @@ export const Reveal = ({ children, delay = 0, y = 40, className = "" }) => (
 );
 
 export const Eyebrow = ({ children, light = false }) => (
-  <p
-    className={`font-sans text-[11px] uppercase tracking-[0.35em] ${
-      light ? "text-bronze-light" : "text-bronze"
+  <span
+    className={`inline-block border-b pb-2 font-sans text-[11px] uppercase tracking-[0.3em] ${
+      light ? "border-bronze-light/80 text-white/75" : "border-bronze/70 text-ink/60"
     }`}
   >
     {children}
-  </p>
+  </span>
 );
 
 export const scrollToId = (selector) => {
