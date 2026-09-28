@@ -52,7 +52,7 @@ export default function NetworkSales() {
               <button
                 data-testid="meet-james-cta"
                 onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
-                className="bg-bronze px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500 hover:opacity-90"
+                className="bg-bronze/90 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
               >
                 Begin a Conversation
               </button>

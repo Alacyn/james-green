@@ -24,7 +24,7 @@ export default function ImagePanelSection({ id, testid, eyebrow, title, copy, im
             <button
               data-testid={`${testid}-cta`}
               onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
-              className="group mt-10 flex items-center gap-3 bg-bronze px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500 hover:opacity-90"
+              className="group mt-10 flex items-center gap-3 bg-bronze/90 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
             >
               Start the Conversation
               <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
