@@ -80,6 +80,8 @@ class ConnectInquiry(BaseDocument):
     dre_number: str
     total_sales: Optional[str] = None
     consent: bool = False
+    message: str = ""
+    interests: List[str] = []
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
@@ -97,6 +99,8 @@ class ConnectInquiryCreate(BaseModel):
     dre_number: str
     total_sales: Optional[str] = None
     consent: bool = False
+    message: str = ""
+    interests: List[str] = []
 
 
 # --- Routes ---
@@ -138,6 +142,8 @@ async def create_connect_inquiry(input: ConnectInquiryCreate):
         dre_number=input.dre_number,
         total_sales=input.total_sales,
         consent=input.consent,
+        message=input.message,
+        interests=input.interests,
     )
     _ = await db.connect_inquiries.insert_one(inquiry.to_mongo())
     return {

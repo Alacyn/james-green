@@ -1,8 +1,9 @@
 import React, { Component, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
 import TeamPage from "@/pages/TeamPage";
+import ContactPage from "@/pages/ContactPage";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -24,6 +25,14 @@ class ErrorBoundary extends Component {
   }
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   useEffect(() => {
     const lenis = new Lenis({ autoRaf: true, lerp: 0.09 });
@@ -37,6 +46,7 @@ function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
+        <ScrollToTop />
         <Toaster
           position="bottom-right"
           toastOptions={{
@@ -49,7 +59,10 @@ function App() {
             },
           }}
         />
-        <TeamPage />
+        <Routes>
+          <Route path="/" element={<TeamPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
       </BrowserRouter>
     </ErrorBoundary>
   );

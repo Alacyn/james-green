@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { EASE, scrollToId } from "./Reveal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LINKS = [
   { label: "Home", href: "top" },
@@ -14,6 +15,8 @@ const LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -34,6 +37,14 @@ export default function Navbar() {
 
   const go = (href) => {
     setOpen(false);
+    if (href === "#contact") {
+      navigate("/contact");
+      return;
+    }
+    if (location.pathname !== "/") {
+      navigate("/");
+      return;
+    }
     setTimeout(() => {
       if (href === "top") {
         window.__lenis ? window.__lenis.scrollTo(0, { duration: 1.6 }) : window.scrollTo({ top: 0, behavior: "smooth" });
