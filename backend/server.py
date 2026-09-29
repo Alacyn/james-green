@@ -261,7 +261,8 @@ async def create_connect_inquiry(input: ConnectInquiryCreate):
     _ = await db.connect_inquiries.insert_one(inquiry.to_mongo())
 
     # Branded notification to James — fixed recipient + server-side template (G4)
-    source_label = "Contact page" if input.source == "contact page" else "Private Inquiry popup"
+    source_labels = {"contact page": "Contact page", "popup": "Private Inquiry popup"}
+    source_label = source_labels.get(input.source, "Private Inquiry popup")
     subject = f"New Inquiry — {input.first_name} {input.last_name}".strip()
     interests_text = ", ".join(input.interests) if input.interests else "—"
     message_text = input.message if input.message.strip() else "—"
@@ -293,6 +294,7 @@ async def create_connect_inquiry(input: ConnectInquiryCreate):
         email_sent = True
     except Exception:
         email_sent = False
+        logger.error(f"Notification email not delivered for inquiry {inquiry.id} ({input.email})")
 
     return {
         "ok": True,

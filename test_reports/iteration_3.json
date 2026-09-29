@@ -1,0 +1,42 @@
+{
+  "summary": "Tested /api/connect email flow + persistence + branding + /contact UI + popup. Endpoint returns 200 and correctly persists inquiries with source field. HOWEVER: (1) Frontend ContactPage.js is MISSING `source:'contact page'` in the axios payload — contact-page submissions are stored with source='' AND the branded email subject uses the wrong label ('Private Inquiry popup' fallback). (2) Resend proxy is currently returning 422 'Undeliverable recipient' for JamesAGreen@eXpRealty.com — an external deliverability block by Resend after the initial 202 send earlier. Endpoint gracefully returns email_sent:false. Email template code, branding palette, _assert_safe_email gate, escape() usage, no forms in template, all HTTPS — all correctly implemented in server.py. Popup sends source:'popup' correctly, close button works, /contact shows only email + phone (no 'Office:' text), both links correct (mailto/tel). No console errors on /contact.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/connect", "issue": "Resend proxy currently returning 422 'undeliverable_recipient' for OWNER_EMAIL JamesAGreen@eXpRealty.com. Backend gracefully returns email_sent:false. External Resend deliverability block; verified server code and payload are correct (initial 202 recorded at 16:44:26 UTC in supervisor log for the manual curl). Not a code bug — may require Resend dashboard/domain-verification action, or waiting for the deliverability cool-down. Consider adding retry/backoff and surfacing this via logs."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "ContactPage.js (frontend/src/pages/ContactPage.js, submit() ~line 35-44)", "issue": "Payload to POST /api/connect does NOT include `source: 'contact page'`. Captured network payload: {\"firstName\":\"UITest\",\"lastName\":\"User\",\"email\":\"...\",\"phone\":\"...\",\"dreNumber\":\"\",\"message\":\"\",\"interests\":[\"Buying\"],\"consent\":true} — no `source` key. Result: DB records from the /contact form are saved with source='' and the branded email subject line label falls into the 'Private Inquiry popup' branch on the server (source_label ternary in server.py:264 treats anything != 'contact page' as popup). Add `source: 'contact page'` to the axios.post body.", "selector": "[data-testid=\"contact-form\"]", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_connect_email.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "FIX (high): In /app/frontend/src/pages/ContactPage.js submit(), add `source: 'contact page'` to the axios.post body so DB records + email subject correctly identify contact-page inquiries.",
+    "INVESTIGATE (external): Resend integrations proxy is returning 422 undeliverable_recipient for JamesAGreen@eXpRealty.com. First send worked (202), subsequent sends blocked. Likely Resend recipient-suppression list or domain-verification issue. Since email_sent may frequently be false, consider: (a) logging body to server for durability, (b) surfacing email_sent status to user or admin, or (c) verifying/whitelisting recipient in Resend. Not a code bug in server.py — verified endpoint calls send_email correctly and gracefully handles failures."
+  ],
+  "critical_code_review_comments": [
+    "ContactPage.js: form.interest is a single string but is sent as `interests: [form.interest]` — OK, but no `source` field passed → server stores source='' and email mis-labels.",
+    "server.py: `source_label` ternary treats any non-'contact page' string (including empty) as 'Private Inquiry popup' — brittle, prefer explicit mapping and reject unknown source values.",
+    "server.py: send_email raises HTTPException on failure which is caught (try/except Exception) in /api/connect — correct graceful degradation. Consider logging inquiry.id in the except so failed email deliveries can be reconciled.",
+    "server.py properties: SAMPLE_PROPERTIES uses `Property(...)` instantiation with hard-coded fields; fine for now.",
+    "OWNER_EMAIL is correctly server-controlled (never caller-supplied) — G4 compliance ✅.",
+    "Email template: no <form>/<input>, all interpolations escape()'d, palette colors match spec (#16100C/#221810/#A8926E/#F1E6D7), _assert_safe_email invoked on every send ✅."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_connect_email.py (new pytest file - 4 tests covering source=contact page, source=popup, minimal payload, and /api/properties regression)"
+  ],
+  "success_rate": {"backend": "25% (1/4 pytest — 3 failures all due to external Resend block, not code); endpoint returns 200 + persists correctly", "frontend": "80% (contact page rendering + popup + close all pass; source-field missing is the failing case)"},
+  "test_credentials": "None required — no auth.",
+  "seed_data_creation": "Created 12 test inquiries with @example.com emails during testing — all cleaned up via db.connect_inquiries.delete_many({'email': {'$regex': '@example.com$'}}). Zero test docs remain in connect_inquiries.",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "After main agent adds `source: 'contact page'` to ContactPage.js payload, re-run /app/backend/tests/test_connect_email.py + a fresh Playwright network-intercept on /contact submit to confirm the outgoing payload now contains `source:'contact page'`. Note: email_sent:false is expected right now due to Resend's temporary undeliverable_recipient block on JamesAGreen@eXpRealty.com; that is NOT a code regression — verify by checking supervisor logs for 422 vs 202. If email_sent must be True in tests, either (a) verify recipient in Resend dashboard, or (b) temporarily set OWNER_EMAIL=delivered@resend.dev per Resend's testing guidance.",
+  "rca_of_the_issue": "RCA #1 (ContactPage source missing): ContactPage.js was updated to include `source: 'contact page'` per the review request but the submit() function's axios.post payload object does not contain that key (verified via Playwright request-interception). Reproduction: submit /contact form → inspect network POST body → source key absent. Fix: add `source: 'contact page'` alongside the other fields in the payload. RCA #2 (email_sent false): Resend integrations proxy returned 202 for the very first send (owner manual test at 16:44 UTC) then repeatedly returned 422 'Recipient looks undeliverable and was blocked before sending to protect deliverability' for subsequent sends to JamesAGreen@eXpRealty.com. This is a Resend recipient-suppression / deliverability filter (external service). Backend correctly wraps failure and returns email_sent:false. Mitigation: verify recipient in Resend or wait for suppression cool-down."
+}

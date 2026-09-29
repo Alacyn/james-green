@@ -41,6 +41,7 @@ export default function ContactPage() {
         message: "",
         interests: form.interest ? [form.interest] : [],
         consent: true,
+        source: "contact page",
       });
       toast.success("Thank you — James will connect with you personally.");
       setForm({ name: "", phone: "", email: "", interest: "", consent: false });
