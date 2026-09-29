@@ -57,11 +57,21 @@ export default function FeaturedProperties() {
             Currently Representing
           </h2>
         </Reveal>
+        {property && (
+          <Reveal delay={0.08} y={16}>
+            <p
+              data-testid="listing-address-line"
+              className="mt-5 text-center font-sans text-[11px] uppercase tracking-[0.3em] text-ink/60 sm:text-xs"
+            >
+              {property.address}
+            </p>
+          </Reveal>
+        )}
       </div>
 
       {frontImage && property && (
         <Reveal delay={0.15} y={40}>
-          <div className="mt-12 grid grid-cols-1 sm:mt-16 sm:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 sm:mt-12 sm:grid-cols-2">
             <div
               data-testid="exterior-photo-0"
               role="button"
@@ -78,43 +88,64 @@ export default function FeaturedProperties() {
                 alt={`${property.address} front exterior`}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6 text-left sm:p-10">
-                <h3
-                  data-testid="property-address"
-                  className="font-sans text-lg font-light uppercase tracking-[0.25em] text-white sm:text-2xl"
-                >
-                  {property.address}
-                </h3>
-                <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
+              <div className="absolute inset-0 bg-black/60 opacity-0 transition-all duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center opacity-0 transition-all duration-500 group-hover:opacity-100">
+                <p className="font-sans text-[11px] uppercase tracking-[0.3em] text-white/90 sm:text-xs">
                   {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
                 </p>
-                <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-white sm:text-base">
-                  {property.price}
-                </p>
+                {property.price && (
+                  <p data-testid="property-price" className="mt-4 font-sans text-lg font-light tracking-[0.1em] text-white sm:text-xl">
+                    {property.price}
+                  </p>
+                )}
                 <a
                   data-testid="listing-request-info"
                   href={`mailto:JamesAGreen@eXpRealty.com?subject=${encodeURIComponent(`Inquiry: ${property.address}`)}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="mt-6 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
+                  className="mt-7 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
                 >
                   Request Info
                   <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
                 </a>
               </div>
             </div>
-            <button
+            <div
               data-testid="exterior-photo-1"
+              role="button"
+              tabIndex={0}
               onClick={() => openListing(property)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") openListing(property);
+              }}
               aria-label={`View backyard of ${property.address}`}
-              className="group relative h-72 overflow-hidden sm:h-[420px] lg:h-[500px]"
+              className="group relative h-72 cursor-pointer overflow-hidden sm:h-[420px] lg:h-[500px]"
             >
               <img
                 src={backImage}
                 alt={`${property.address} backyard`}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-            </button>
+              <div className="absolute inset-0 bg-black/60 opacity-0 transition-all duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center opacity-0 transition-all duration-500 group-hover:opacity-100">
+                <p className="font-sans text-[11px] uppercase tracking-[0.3em] text-white/90 sm:text-xs">
+                  {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
+                </p>
+                {property.price && (
+                  <p className="mt-4 font-sans text-lg font-light tracking-[0.1em] text-white sm:text-xl">
+                    {property.price}
+                  </p>
+                )}
+                <a
+                  data-testid="listing-request-info-back"
+                  href={`mailto:JamesAGreen@eXpRealty.com?subject=${encodeURIComponent(`Inquiry: ${property.address}`)}`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="mt-7 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
+                >
+                  Request Info
+                  <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
           </div>
         </Reveal>
       )}
