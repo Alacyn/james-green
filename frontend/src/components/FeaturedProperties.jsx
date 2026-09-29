@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -6,43 +6,7 @@ import { Reveal, EASE } from "./Reveal";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-function CardSlideshow({ photos, alt }) {
-  const [idx, setIdx] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % photos.length), 4500);
-    return () => clearInterval(t);
-  }, [photos.length]);
-
-  return (
-    <>
-      <AnimatePresence initial={false}>
-        <motion.img
-          key={photos[idx]}
-          src={photos[idx]}
-          alt={alt}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.1, ease: "easeInOut" }}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      </AnimatePresence>
-      <div data-testid="property-card-dots" className="absolute bottom-6 right-6 z-20 flex gap-1.5">
-        {photos.map((_, d) => (
-          <span
-            key={d}
-            data-testid={`property-card-dot-${d}`}
-            className={`h-1 rounded-full transition-all duration-500 ${d === idx ? "w-6 bg-bronze-light" : "w-1.5 bg-white/50"}`}
-          />
-        ))}
-      </div>
-    </>
-  );
-}
-
 export default function FeaturedProperties() {
-  const trackRef = useRef(null);
   const [properties, setProperties] = useState([]);
   const [selected, setSelected] = useState(null);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -74,16 +38,18 @@ export default function FeaturedProperties() {
   const gallery = selected
     ? selected.photos?.length
       ? selected.photos
-      : [selected.image_url]
+      : selected.image_url
+        ? [selected.image_url]
+        : []
     : [];
   const stepPhoto = (dir) =>
     setPhotoIndex((i) => (i + dir + gallery.length) % gallery.length);
 
-  const scrollBy = (dir) => {
-    const track = trackRef.current;
-    if (!track) return;
-    track.scrollBy({ left: dir * (track.clientWidth * 0.85), behavior: "smooth" });
-  };
+  const property = properties[0];
+  const exteriors = property
+    ? [property.photos?.[6], property.photos?.[5], property.photos?.[0]].filter(Boolean)
+    : [];
+  const rowImages = exteriors.length === 3 ? exteriors : property?.image_url ? [property.image_url] : [];
 
   return (
     <section data-testid="featured-properties-section" id="properties" className="bg-paper py-20 text-ink sm:py-28 lg:py-28">
@@ -95,104 +61,52 @@ export default function FeaturedProperties() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.15} y={40}>
-        <div className="relative mt-12 lg:mt-16">
-          <div
-            ref={trackRef}
-            data-testid="properties-track"
-            className={`flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-2 sm:gap-6 sm:px-10 lg:px-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${properties.length === 1 ? "justify-center" : ""}`}
-          >
-            {properties.map((p, i) => (
-              <article
-                key={p.id}
-                data-testid="property-card"
-                role="button"
-                tabIndex={0}
-                aria-label={`View details for ${p.address}`}
-                onClick={() => openListing(p)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") openListing(p);
-                }}
-                className={`group relative ${i === 0 ? "w-[90%] sm:w-[78%] lg:w-[64%]" : "w-[85%] sm:w-[60%] lg:w-[42%]"} shrink-0 cursor-pointer snap-start overflow-hidden`}
+      {rowImages.length > 0 && (
+        <Reveal delay={0.15} y={40}>
+          <div data-testid="exterior-row" className="mt-12 grid grid-cols-1 sm:mt-16 sm:grid-cols-3">
+            {rowImages.map((src, i) => (
+              <button
+                key={src}
+                data-testid={`exterior-photo-${i}`}
+                onClick={() => openListing(property)}
+                aria-label={`View details for ${property.address}`}
+                className="group relative h-64 overflow-hidden sm:h-[420px] lg:h-[560px]"
               >
-                <div className={`relative overflow-hidden ${i === 0 ? "h-[340px] sm:h-[480px] lg:h-[640px]" : "h-[300px] sm:h-[420px] lg:h-[520px]"}`}>
-                  {p.photos?.length > 1 ? (
-                    <CardSlideshow photos={p.photos} alt={p.address} />
-                  ) : p.image_url ? (
-                    <img
-                      src={p.image_url}
-                      alt={p.address}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  ) : null}
-                  {p.image_url && (
-                    <>
-                      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
-                      <div className="absolute bottom-0 left-0 p-6 sm:p-8">
-                        <h3
-                          data-testid="property-address"
-                          className="font-sans text-lg font-light uppercase tracking-[0.25em] text-white sm:text-2xl"
-                        >
-                          {p.address}
-                        </h3>
-                        {(p.beds || p.baths || p.sqft) && (
-                          <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
-                            {[p.beds, p.baths, p.sqft].filter(Boolean).join(" | ")}
-                          </p>
-                        )}
-                        {p.price && (
-                          <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-bronze-light sm:text-base">
-                            {p.price}
-                          </p>
-                        )}
-                      </div>
-                    </>
-                  )}
-                  {!p.image_url && (
-                    <div className="flex h-full w-full flex-col items-center justify-center bg-coal px-8 text-center">
+                <img
+                  src={src}
+                  alt={`${property.address} exterior ${i + 1}`}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {i === 1 && (
+                  <>
+                    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                    <div className="absolute bottom-0 left-0 p-6 text-left sm:p-8">
                       <h3
                         data-testid="property-address"
-                        className="font-sans text-xl font-light uppercase tracking-[0.3em] text-[#F1E6D7] sm:text-3xl"
+                        className="font-sans text-lg font-light uppercase tracking-[0.25em] text-white sm:text-2xl"
                       >
-                        {p.address}
+                        {property.address}
                       </h3>
-                      <p className="mt-5 font-sans text-[11px] uppercase tracking-[0.35em] text-bronze-light sm:text-xs">
-                        {p.city}, {p.state}
+                      <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
+                        {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
+                      </p>
+                      <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-bronze-light sm:text-base">
+                        {property.price}
                       </p>
                     </div>
-                  )}
-                </div>
-              </article>
+                  </>
+                )}
+              </button>
             ))}
-            {properties.length === 0 && (
-              <p className="w-full py-16 text-center text-sm font-light text-ink/50">
-                Featured properties coming soon.
-              </p>
-            )}
           </div>
+        </Reveal>
+      )}
 
-          {properties.length > 1 && (
-            <>
-              <button
-                data-testid="properties-scroll-left"
-                onClick={() => scrollBy(-1)}
-                aria-label="Previous properties"
-                className="absolute left-3 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-black/30 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/60 lg:flex"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                data-testid="properties-scroll-right"
-                onClick={() => scrollBy(1)}
-                aria-label="Next properties"
-                className="absolute right-3 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-black/30 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/60 lg:flex"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </>
-          )}
-        </div>
-      </Reveal>
+      {properties.length === 0 && (
+        <p className="mt-12 text-center text-sm font-light text-ink/50">
+          Featured properties coming soon.
+        </p>
+      )}
 
       <AnimatePresence>
         {selected && (
