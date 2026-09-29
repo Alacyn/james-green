@@ -16,13 +16,11 @@ export default function ExclusiveAccess() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", consent: false });
 
   useEffect(() => {
-    if (sessionStorage.getItem("exclusive-access-dismissed")) return;
     const t = setTimeout(() => setOpen(true), 6000);
     return () => clearTimeout(t);
   }, []);
 
   const close = () => {
-    sessionStorage.setItem("exclusive-access-dismissed", "1");
     setOpen(false);
   };
 

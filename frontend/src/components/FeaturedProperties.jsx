@@ -46,10 +46,7 @@ export default function FeaturedProperties() {
     setPhotoIndex((i) => (i + dir + gallery.length) % gallery.length);
 
   const property = properties[0];
-  const exteriors = property
-    ? [property.photos?.[6], property.photos?.[5], property.photos?.[0]].filter(Boolean)
-    : [];
-  const rowImages = exteriors.length === 3 ? exteriors : property?.image_url ? [property.image_url] : [];
+  const frontImage = property?.photos?.[1] || property?.image_url || "";
 
   return (
     <section data-testid="featured-properties-section" id="properties" className="bg-paper py-20 text-ink sm:py-28 lg:py-28">
@@ -61,44 +58,35 @@ export default function FeaturedProperties() {
         </Reveal>
       </div>
 
-      {rowImages.length > 0 && (
+      {frontImage && property && (
         <Reveal delay={0.15} y={40}>
-          <div data-testid="exterior-row" className="mt-12 grid grid-cols-1 sm:mt-16 sm:grid-cols-3">
-            {rowImages.map((src, i) => (
-              <button
-                key={src}
-                data-testid={`exterior-photo-${i}`}
-                onClick={() => openListing(property)}
-                aria-label={`View details for ${property.address}`}
-                className="group relative h-64 overflow-hidden sm:h-[420px] lg:h-[560px]"
+          <button
+            data-testid="exterior-photo-0"
+            onClick={() => openListing(property)}
+            aria-label={`View details for ${property.address}`}
+            className="group relative mt-12 block h-[380px] w-full overflow-hidden sm:mt-16 sm:h-[520px] lg:h-[660px]"
+          >
+            <img
+              src={frontImage}
+              alt={`${property.address} exterior`}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-6 text-left sm:p-10 lg:p-14">
+              <h3
+                data-testid="property-address"
+                className="font-sans text-xl font-light uppercase tracking-[0.25em] text-white sm:text-3xl"
               >
-                <img
-                  src={src}
-                  alt={`${property.address} exterior ${i + 1}`}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {i === 1 && (
-                  <>
-                    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-6 text-left sm:p-8">
-                      <h3
-                        data-testid="property-address"
-                        className="font-sans text-lg font-light uppercase tracking-[0.25em] text-white sm:text-2xl"
-                      >
-                        {property.address}
-                      </h3>
-                      <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
-                        {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
-                      </p>
-                      <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-bronze-light sm:text-base">
-                        {property.price}
-                      </p>
-                    </div>
-                  </>
-                )}
-              </button>
-            ))}
-          </div>
+                {property.address}
+              </h3>
+              <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
+                {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
+              </p>
+              <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-bronze-light sm:text-lg">
+                {property.price}
+              </p>
+            </div>
+          </button>
         </Reveal>
       )}
 
