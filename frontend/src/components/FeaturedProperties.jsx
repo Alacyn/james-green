@@ -63,7 +63,7 @@ export default function FeaturedProperties() {
               data-testid="listing-address-line"
               className="mt-5 text-center font-sans text-[11px] uppercase tracking-[0.3em] text-ink/60 sm:text-xs"
             >
-              {property.address}
+              {property.address}, {property.city}, {property.state} {property.zip} &middot; {property.price}
             </p>
           </Reveal>
         )}
@@ -135,15 +135,6 @@ export default function FeaturedProperties() {
                     {property.price}
                   </p>
                 )}
-                <a
-                  data-testid="listing-request-info-back"
-                  href={`mailto:JamesAGreen@eXpRealty.com?subject=${encodeURIComponent(`Inquiry: ${property.address}`)}`}
-                  onClick={(e) => e.stopPropagation()}
-                  className="mt-7 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
-                >
-                  Request Info
-                  <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
-                </a>
               </div>
             </div>
           </div>

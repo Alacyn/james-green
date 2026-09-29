@@ -20,9 +20,7 @@ export default function ExclusiveAccess() {
     return () => clearTimeout(t);
   }, []);
 
-  const close = () => {
-    setOpen(false);
-  };
+  const close = () => setOpen(false);
 
   useEffect(() => {
     if (!open) return;
@@ -82,7 +80,7 @@ export default function ExclusiveAccess() {
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.45, ease: EASE }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[92vh] w-full max-w-md overflow-y-auto border border-white/20 bg-[#221810]/70 p-8 text-center shadow-2xl backdrop-blur-xl sm:p-10"
+            className="relative max-h-[92vh] w-full max-w-md overflow-y-auto border border-white/20 bg-[#221810]/70 p-6 text-center shadow-2xl backdrop-blur-xl sm:p-7"
           >
             <button
               data-testid="popup-close"
@@ -96,14 +94,16 @@ export default function ExclusiveAccess() {
             <p className="font-sans text-[10px] uppercase tracking-[0.42em] text-bronze-light">
               Private Inquiry
             </p>
-            <h2 className="mt-4 font-sans text-xl font-light uppercase tracking-[0.25em] text-[#F1E6D7] sm:text-2xl">
-              Begin Your Next Move
+            <h2 className="mt-3 font-sans text-xl font-light uppercase tracking-[0.25em] text-[#F1E6D7] sm:text-2xl">
+              Your Next Move
             </h2>
-            <p className="mt-4 text-sm font-light leading-relaxed text-white/65">
-              Buying, selling, building, or relocating? Begin with a conversation.
+            <p className="mt-3 text-sm font-light leading-relaxed text-white/65">
+              Buying, selling, building, or relocating?
+              <br />
+              Let&rsquo;s start the conversation.
             </p>
 
-            <form onSubmit={submit} className="mt-8 space-y-6 text-left">
+            <form onSubmit={submit} className="mt-6 space-y-4 text-left">
               <input
                 data-testid="popup-name"
                 placeholder="Full Name"
@@ -127,7 +127,7 @@ export default function ExclusiveAccess() {
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className={inputCls}
               />
-              <label className="flex cursor-pointer items-start gap-3">
+              <label className="flex cursor-pointer items-start gap-2.5">
                 <input
                   data-testid="popup-consent"
                   type="checkbox"
@@ -135,7 +135,7 @@ export default function ExclusiveAccess() {
                   onChange={(e) => setForm({ ...form, consent: e.target.checked })}
                   className="mt-0.5 h-4 w-4 shrink-0 accent-bronze"
                 />
-                <span className="text-[11px] font-light leading-relaxed text-white/55">
+                <span className="text-[11px] font-light leading-snug text-white/55">
                   I agree to be contacted by James Green via call, email and text for
                   real estate services. To opt out, reply &ldquo;stop&rdquo; at any
                   time. Message and data rates may apply.

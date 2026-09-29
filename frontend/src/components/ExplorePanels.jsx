@@ -30,7 +30,7 @@ const PANELS = [
 
 export default function ExplorePanels() {
   return (
-    <section data-testid="explore-panels-section" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:h-[78vh] lg:min-h-[540px]">
+    <section data-testid="explore-panels-section" id="explore" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:h-[78vh] lg:min-h-[540px]">
       {PANELS.map((p) => (
         <button
           key={p.label}

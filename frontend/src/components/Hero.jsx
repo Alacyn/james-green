@@ -59,7 +59,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.15, ease: EASE }}
           data-testid="hero-explore-button"
-          onClick={() => scrollToId("#about")}
+          onClick={() => scrollToId("#explore")}
           className="group mt-4 flex items-center gap-3 border border-white/30 bg-white/10 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] backdrop-blur-md transition-all duration-500 hover:border-white/50 hover:bg-white/20"
         >
           Explore

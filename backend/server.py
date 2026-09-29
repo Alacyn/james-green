@@ -156,6 +156,7 @@ class Property(BaseDocument):
     sqft: str
     price: str
     image_url: str
+    zip: str = ""
     photos: List[str] = []
     description: str = ""
     order: int = 0
@@ -198,7 +199,7 @@ BERYLLINE_DESCRIPTION = (
 )
 
 SAMPLE_PROPERTIES = [
-    Property(address="4351 Berylline Lane", city="Prosper", state="Texas", beds="6 Beds", baths="4.5 Baths", sqft="3,764 Sq.Ft.", price="$879,000", image_url="/images/berylline-1.jpg", photos=BERYLLINE_PHOTOS, description=BERYLLINE_DESCRIPTION, order=1),
+    Property(address="4351 Berylline Lane", city="Prosper", state="TX", zip="75078", beds="6 Beds", baths="4.5 Baths", sqft="3,764 Sq.Ft.", price="$879,000", image_url="/images/berylline-1.jpg", photos=BERYLLINE_PHOTOS, description=BERYLLINE_DESCRIPTION, order=1),
 ]
 
 
