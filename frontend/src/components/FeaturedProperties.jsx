@@ -26,7 +26,7 @@ export default function FeaturedProperties() {
       <div className="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-16">
         <Reveal y={24}>
           <h2 className="text-center font-sans text-xl font-light uppercase tracking-[0.35em] sm:text-3xl">
-            Featured Properties
+            Currently Representing
           </h2>
         </Reveal>
       </div>
@@ -36,7 +36,7 @@ export default function FeaturedProperties() {
           <div
             ref={trackRef}
             data-testid="properties-track"
-            className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-2 sm:gap-6 sm:px-10 lg:px-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className={`flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-2 sm:gap-6 sm:px-10 lg:px-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${properties.length === 1 ? "justify-center" : ""}`}
           >
             {properties.map((p) => (
               <article
@@ -45,26 +45,46 @@ export default function FeaturedProperties() {
                 className="group relative w-[85%] shrink-0 snap-start overflow-hidden sm:w-[60%] lg:w-[42%]"
               >
                 <div className="relative h-[300px] overflow-hidden sm:h-[420px] lg:h-[520px]">
-                  <img
-                    src={p.image_url}
-                    alt={p.address}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-6 sm:p-8">
-                    <h3
-                      data-testid="property-address"
-                      className="font-sans text-lg font-light uppercase tracking-[0.25em] text-white sm:text-2xl"
-                    >
-                      {p.address}
-                    </h3>
-                    <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
-                      {p.beds} | {p.baths} | {p.sqft}
-                    </p>
-                    <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-bronze-light sm:text-base">
-                      {p.price}
-                    </p>
-                  </div>
+                  {p.image_url ? (
+                    <>
+                      <img
+                        src={p.image_url}
+                        alt={p.address}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+                      <div className="absolute bottom-0 left-0 p-6 sm:p-8">
+                        <h3
+                          data-testid="property-address"
+                          className="font-sans text-lg font-light uppercase tracking-[0.25em] text-white sm:text-2xl"
+                        >
+                          {p.address}
+                        </h3>
+                        {(p.beds || p.baths || p.sqft) && (
+                          <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
+                            {[p.beds, p.baths, p.sqft].filter(Boolean).join(" | ")}
+                          </p>
+                        )}
+                        {p.price && (
+                          <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-bronze-light sm:text-base">
+                            {p.price}
+                          </p>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex h-full w-full flex-col items-center justify-center bg-coal px-8 text-center">
+                      <h3
+                        data-testid="property-address"
+                        className="font-sans text-xl font-light uppercase tracking-[0.3em] text-[#F1E6D7] sm:text-3xl"
+                      >
+                        {p.address}
+                      </h3>
+                      <p className="mt-5 font-sans text-[11px] uppercase tracking-[0.35em] text-bronze-light sm:text-xs">
+                        {p.city}, {p.state}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </article>
             ))}

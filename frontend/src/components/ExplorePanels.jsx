@@ -5,6 +5,7 @@ const PANELS = [
     label: "Meet",
     href: "#about",
     img: "/images/panel-meet.png",
+    pos: "object-top",
     copy: "Two decades of client-first experience across financial services, lending, relocation, and advocacy.",
   },
   {
@@ -40,7 +41,7 @@ export default function ExplorePanels() {
           <img
             src={p.img}
             alt=""
-            className="absolute inset-0 h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
+            className={`absolute inset-0 h-full w-full object-cover ${p.pos || "object-center"} transition-all duration-700 group-hover:scale-105`}
           />
           <div className="absolute inset-0 bg-black/45 transition-all duration-700 group-hover:bg-black/15" />
 

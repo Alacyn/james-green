@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import NetworkSales from "@/components/NetworkSales";
 import ExplorePanels from "@/components/ExplorePanels";
-import FeaturedStats from "@/components/FeaturedStats";
 import ClientExperience from "@/components/ClientExperience";
 import BuySection from "@/components/BuySection";
 import SellSection from "@/components/SellSection";
@@ -20,7 +19,6 @@ export default function TeamPage() {
         <About />
         <ExplorePanels />
         <NetworkSales />
-        <FeaturedStats />
         <ClientExperience />
         <BuySection />
         <SellSection />
