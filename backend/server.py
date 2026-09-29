@@ -79,6 +79,7 @@ class ConnectInquiry(BaseDocument):
     phone: str
     dre_number: str
     total_sales: Optional[str] = None
+    consent: bool = False
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
@@ -136,6 +137,7 @@ async def create_connect_inquiry(input: ConnectInquiryCreate):
         phone=input.phone,
         dre_number=input.dre_number,
         total_sales=input.total_sales,
+        consent=input.consent,
     )
     _ = await db.connect_inquiries.insert_one(inquiry.to_mongo())
     return {

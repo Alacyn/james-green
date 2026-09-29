@@ -4,7 +4,16 @@ export default function ClientExperience() {
   return (
     <section data-testid="client-experience-section" className="bg-white text-ink">
       <div className="mx-auto max-w-4xl px-8 py-20 text-center sm:px-10 sm:py-28 lg:py-32">
-        <Reveal y={24}>
+        <Reveal y={16} className="-mt-8 sm:-mt-12 lg:-mt-20">
+          <span
+            aria-hidden="true"
+            data-testid="testimonial-quote-mark"
+            className="block select-none text-center font-sans text-[110px] font-light leading-[0.55] text-bronze/40"
+          >
+            &ldquo;
+          </span>
+        </Reveal>
+        <Reveal y={24} className="mt-8">
           <Eyebrow>Client Experience</Eyebrow>
         </Reveal>
         <Reveal delay={0.08} y={30}>

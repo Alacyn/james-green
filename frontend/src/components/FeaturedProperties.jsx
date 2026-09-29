@@ -53,7 +53,7 @@ export default function FeaturedProperties() {
             data-testid="properties-track"
             className={`flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-2 sm:gap-6 sm:px-10 lg:px-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${properties.length === 1 ? "justify-center" : ""}`}
           >
-            {properties.map((p) => (
+            {properties.map((p, i) => (
               <article
                 key={p.id}
                 data-testid="property-card"
@@ -64,9 +64,9 @@ export default function FeaturedProperties() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") setSelected(p);
                 }}
-                className="group relative w-[85%] shrink-0 cursor-pointer snap-start overflow-hidden sm:w-[60%] lg:w-[42%]"
+                className={`group relative ${i === 0 ? "w-[90%] sm:w-[78%] lg:w-[64%]" : "w-[85%] sm:w-[60%] lg:w-[42%]"} shrink-0 cursor-pointer snap-start overflow-hidden`}
               >
-                <div className="relative h-[300px] overflow-hidden sm:h-[420px] lg:h-[520px]">
+                <div className={`relative overflow-hidden ${i === 0 ? "h-[340px] sm:h-[480px] lg:h-[640px]" : "h-[300px] sm:h-[420px] lg:h-[520px]"}`}>
                   {p.image_url ? (
                     <>
                       <img

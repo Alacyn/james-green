@@ -8,6 +8,7 @@ import BuySection from "@/components/BuySection";
 import SellSection from "@/components/SellSection";
 import FeaturedProperties from "@/components/FeaturedProperties";
 import Footer from "@/components/Footer";
+import ExclusiveAccess from "@/components/ExclusiveAccess";
 
 export default function TeamPage() {
   return (
@@ -25,6 +26,7 @@ export default function TeamPage() {
         <SellSection />
       </main>
       <Footer />
+      <ExclusiveAccess />
     </div>
   );
 }
