@@ -46,10 +46,10 @@ export default function FeaturedProperties() {
     setPhotoIndex((i) => (i + dir + gallery.length) % gallery.length);
 
   const property = properties[0];
-  const frontImage = property?.photos?.[1] || property?.image_url || "";
+  const frontImage = property?.photos?.[0] || property?.image_url || "";
 
   return (
-    <section data-testid="featured-properties-section" id="properties" className="bg-paper py-20 text-ink sm:py-28 lg:py-28">
+    <section data-testid="featured-properties-section" id="properties" className="bg-paper pt-20 pb-0 text-ink sm:pt-28 sm:pb-0 lg:pt-28 lg:pb-0">
       <div className="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-16">
         <Reveal y={24}>
           <h2 className="text-center font-sans text-xl font-light uppercase tracking-[0.35em] sm:text-3xl">
