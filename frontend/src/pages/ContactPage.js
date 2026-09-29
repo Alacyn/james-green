@@ -3,7 +3,8 @@ import axios from "axios";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { toast } from "sonner";
 import Navbar from "@/components/Navbar";
-import { Reveal } from "@/components/Reveal";
+import { Reveal, EASE } from "@/components/Reveal";
+import { motion } from "framer-motion";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -69,7 +70,11 @@ export default function ContactPage() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.15} y={30}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.15, ease: EASE }}
+        >
           <form data-testid="contact-form" onSubmit={submit} className="mt-16">
             <div className="space-y-9">
               <div>
@@ -167,9 +172,13 @@ export default function ContactPage() {
               <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
             </button>
           </form>
-        </Reveal>
+        </motion.div>
 
-        <Reveal delay={0.2}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3, ease: EASE }}
+        >
           <div className="mt-20">
             <p className="font-sans text-sm uppercase tracking-[0.3em] text-[#F1E6D7]">James Green</p>
             <p className="mt-2 font-sans text-[10px] uppercase tracking-[0.3em] text-bronze-light">
@@ -200,7 +209,7 @@ export default function ContactPage() {
               independently reviewed and verified. Equal Housing Opportunity.
             </p>
           </div>
-        </Reveal>
+        </motion.div>
       </main>
     </div>
   );
