@@ -185,7 +185,6 @@ export default function ContactPage() {
               Global Real Estate Advisor
             </p>
             <div className="mt-6 space-y-1 text-xs font-light text-white/60">
-              <p>eXp Realty, LLC &middot; Office: (888) 519-7431</p>
               <p>
                 <a
                   data-testid="contact-email-link"
@@ -194,7 +193,8 @@ export default function ContactPage() {
                 >
                   JamesAGreen@eXpRealty.com
                 </a>
-                {" "}&middot;{" "}
+              </p>
+              <p>
                 <a
                   data-testid="contact-phone-link"
                   href="tel:9728768030"

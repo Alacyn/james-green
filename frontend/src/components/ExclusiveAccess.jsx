@@ -51,6 +51,7 @@ export default function ExclusiveAccess() {
         phone: form.phone.trim(),
         dreNumber: "",
         consent: true,
+        source: "popup",
       });
       toast.success("Thank you — James will connect with you personally.");
       close();

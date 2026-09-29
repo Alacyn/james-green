@@ -1,0 +1,24 @@
+{
+  "summary": "Verified fix for user-reported invisible contact form. Replaced Reveal (whileInView) with motion.div (animate-on-mount) on form + agent block. On 1440x611 short viewport and 390x844 mobile, all form fields (contact-form, contact-name, contact-phone, contact-email, contact-interest, contact-consent, contact-submit) render with computed opacity:1, transform:none, no whileInView-gated ancestors. Agent block (James Green / Global Real Estate Advisor / eXp Realty / Equal Housing) also opacity:1 after mount. End-to-end form submit succeeded with success toast and doc persisted in connect_inquiries (interests=['Buying']) — cleaned up post-test. Home regression: popup opens ~6s, closes via popup-close; all CTAs (meet-james-cta, buy-section-cta, sell-section-cta, explore-panel-connect, nav-link-contact) present and nav-link-contact routes to /contact. No horizontal overflow on mobile (docWidth==winWidth==390).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/backend/tests/test_backend.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Fix is correct and minimal: only the form + agent motion.div wrappers were switched from whileInView Reveal to animate-on-mount; the top intro Reveal was intentionally kept and works fine because it's above the fold on load. No side effects observed.",
+    "Two console warnings on home ('container non-static position ... scroll offset') come from framer-motion useScroll on a static ancestor — cosmetic, non-blocking, unchanged from iteration_1.",
+    "Minor: on 1440x611 the form's first input sits at y≈491 (fold at 611), so ~120px is above fold and the rest is one short scroll away — expected for a 611px browser; NOT the reported bug. The bug was opacity:0 which is now resolved."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (submit + persist verified)", "frontend": "100% (visibility, submit, mobile, home CTAs)"},
+  "test_credentials": "N/A",
+  "seed_data_creation": "1 TEST doc inserted via UI submit at email=test_bug@example.com, deleted after verification.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Fix verified. ContactPage form + agent block now use motion.div animate-on-mount (not whileInView) — never gated by IntersectionObserver. If regression re-appears, check ContactPage.js lines 73-77 and 177-180 were not reverted to <Reveal>. Popup delay is ~6s on home; wait 7s then click popup-close.",
+  "rca of the issue": "Original bug: form was wrapped in <Reveal> which uses framer-motion whileInView + IntersectionObserver, starting at opacity:0. In some browsers/short viewports/reduced-motion settings the IO trigger never fired, leaving the form permanently invisible. Fix (verified): swap the wrapping <Reveal> around <form> and the bottom agent block for a plain motion.div with initial={opacity:0,y:30} + animate={opacity:1,y:0} — plays unconditionally on mount, no scroll dependency. Confirmed computed opacity:1 / transform:none on all target testids at both 1440x611 and 390x844."
+}
