@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Reveal, Eyebrow } from "./Reveal";
 
 export default function NetworkSales() {
+  const navigate = useNavigate();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
@@ -53,7 +55,7 @@ export default function NetworkSales() {
             <div className="mt-10 space-y-6">
               <button
                 data-testid="meet-james-cta"
-                onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
+                onClick={() => navigate("/contact")}
                 className="group flex items-center gap-3 bg-bronze/90 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
               >
                 Start a Conversation

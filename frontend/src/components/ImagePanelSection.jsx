@@ -1,7 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { useNavigate } from "react-router-dom";
 
 export default function ImagePanelSection({ id, testid, eyebrow, title, copy, image, align = "left", cta = "Start the Conversation" }) {
+  const navigate = useNavigate();
   const imageSide = align === "right" ? "lg:order-2" : "lg:order-1";
   const contentSide = align === "right" ? "lg:order-1" : "lg:order-2";
 
@@ -23,7 +25,7 @@ export default function ImagePanelSection({ id, testid, eyebrow, title, copy, im
             <p className="mt-7 text-[15px] font-light leading-[1.9] text-ink/60">{copy}</p>
             <button
               data-testid={`${testid}-cta`}
-              onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
+              onClick={() => navigate("/contact")}
               className="group mt-10 flex items-center gap-3 bg-bronze/90 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
             >
               {cta}

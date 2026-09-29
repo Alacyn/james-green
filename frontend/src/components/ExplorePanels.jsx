@@ -1,4 +1,5 @@
 import { scrollToId } from "./Reveal";
+import { useNavigate } from "react-router-dom";
 
 const PANELS = [
   {
@@ -29,13 +30,14 @@ const PANELS = [
 ];
 
 export default function ExplorePanels() {
+  const navigate = useNavigate();
   return (
     <section data-testid="explore-panels-section" id="explore" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:h-[78vh] lg:min-h-[540px]">
       {PANELS.map((p) => (
         <button
           key={p.label}
           data-testid={`explore-panel-${p.label.toLowerCase()}`}
-          onClick={() => scrollToId(p.href)}
+          onClick={() => (p.href === "#contact" ? navigate("/contact") : scrollToId(p.href))}
           className="group relative block h-52 overflow-hidden text-left sm:h-64 lg:h-auto"
         >
           <img
