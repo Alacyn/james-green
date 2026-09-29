@@ -7,7 +7,12 @@ export default function ClientExperience() {
         <Reveal y={24}>
           <Eyebrow>Client Experience</Eyebrow>
         </Reveal>
-        <Reveal delay={0.1} y={30}>
+        <Reveal delay={0.08} y={30}>
+          <h2 className="mt-8 font-sans text-xl font-light uppercase tracking-[0.3em] sm:text-3xl">
+            In Their Words
+          </h2>
+        </Reveal>
+        <Reveal delay={0.15} y={30}>
           <blockquote
             data-testid="client-experience-quote"
             className="mx-auto mt-10 max-w-2xl text-left text-[15px] font-light leading-[1.95] text-ink/60 sm:text-base"
