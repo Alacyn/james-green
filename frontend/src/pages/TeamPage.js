@@ -19,10 +19,10 @@ export default function TeamPage() {
         <About />
         <ExplorePanels />
         <NetworkSales />
+        <FeaturedProperties />
         <ClientExperience />
         <BuySection />
         <SellSection />
-        <FeaturedProperties />
       </main>
       <Footer />
     </div>
