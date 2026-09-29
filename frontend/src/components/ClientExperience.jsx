@@ -13,9 +13,9 @@ export default function ClientExperience() {
         <Reveal delay={0.12} y={30}>
           <blockquote
             data-testid="client-experience-quote"
-            className="mx-auto mt-10 max-w-3xl text-lg font-light leading-[1.9] text-[#F1E6D7] sm:text-2xl sm:leading-[1.85]"
+            className="mx-auto mt-10 max-w-3xl text-[15px] font-light leading-[2] text-[#F1E6D7] sm:text-base sm:leading-[2]"
           >
-            &ldquo;James made my apartment search in Dallas so much easier, especially
+            &ldquo;James made my home search in Dallas so much easier, especially
             navigating it from out of state. He really listened to what I needed, was
             patient through the whole process, and helped me find a place in
             Knox-Henderson that I&rsquo;m genuinely excited about.&rdquo;
