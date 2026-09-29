@@ -56,7 +56,7 @@ export default function ExclusiveAccess() {
         dreNumber: "",
         consent: true,
       });
-      toast.success("Thank you — you're on the list. James will be in touch.");
+      toast.success("Thank you — James will connect with you personally.");
       close();
       setForm({ name: "", phone: "", email: "", consent: false });
     } catch {
@@ -96,14 +96,15 @@ export default function ExclusiveAccess() {
             </button>
 
             <p className="font-sans text-[10px] uppercase tracking-[0.4em] text-bronze-light">
-              Exclusive Access
+              Let&rsquo;s Connect
             </p>
-            <h2 className="mt-4 font-sans text-2xl font-light uppercase tracking-[0.2em] text-[#F1E6D7] sm:text-3xl">
-              The Curated Edit
+            <h2 className="mt-4 font-sans text-xl font-light uppercase tracking-[0.25em] text-[#F1E6D7] sm:text-2xl">
+              Start the Conversation
             </h2>
             <p className="mt-4 text-sm font-light leading-relaxed text-white/65">
-              Distinctive homes. Inspired design. Places worth knowing across
-              Dallas&ndash;Fort Worth.
+              Thinking about buying, selling, building, or relocating to
+              Dallas&ndash;Fort Worth? Tell James a little about what you&rsquo;re
+              considering, and he&rsquo;ll connect with you personally.
             </p>
 
             <form onSubmit={submit} className="mt-8 space-y-6 text-left">
@@ -150,7 +151,7 @@ export default function ExclusiveAccess() {
                 disabled={submitting}
                 className="group flex w-full items-center justify-center gap-3 bg-[#F1E6D7] py-4 font-sans text-[11px] uppercase tracking-[0.3em] text-ink transition-all duration-500 hover:bg-white disabled:opacity-60"
               >
-                {submitting ? "Entering..." : "Enter the Edit"}
+                {submitting ? "Sending..." : "Let's Talk"}
                 <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
               </button>
             </form>

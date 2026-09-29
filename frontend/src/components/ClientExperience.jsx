@@ -4,16 +4,7 @@ export default function ClientExperience() {
   return (
     <section data-testid="client-experience-section" className="bg-white text-ink">
       <div className="mx-auto max-w-4xl px-8 py-20 text-center sm:px-10 sm:py-28 lg:py-32">
-        <Reveal y={16} className="-mt-8 sm:-mt-12 lg:-mt-20">
-          <span
-            aria-hidden="true"
-            data-testid="testimonial-quote-mark"
-            className="block select-none text-center font-sans text-[110px] font-light leading-[0.55] text-bronze/40"
-          >
-            &ldquo;
-          </span>
-        </Reveal>
-        <Reveal y={24} className="mt-8">
+        <Reveal y={24}>
           <Eyebrow>Client Experience</Eyebrow>
         </Reveal>
         <Reveal delay={0.08} y={30}>
@@ -30,15 +21,13 @@ export default function ClientExperience() {
             navigating it from out of state. He really listened to what I needed, was
             patient through the whole process, and helped me find a place in
             Knox-Henderson that I&rsquo;m genuinely excited about.&rdquo;
+            <span
+              data-testid="client-experience-author"
+              className="whitespace-nowrap font-sans text-[11px] uppercase tracking-[0.3em]"
+            >
+              &nbsp;&mdash;&nbsp;Hayley Mason
+            </span>
           </blockquote>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <p
-            data-testid="client-experience-author"
-            className="mx-auto max-w-2xl text-left font-sans text-[11px] uppercase tracking-[0.3em] text-ink/60"
-          >
-            &mdash; Hayley Mason
-          </p>
         </Reveal>
       </div>
     </section>
