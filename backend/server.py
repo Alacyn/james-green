@@ -158,7 +158,7 @@ class Property(BaseDocument):
 
 
 SAMPLE_PROPERTIES = [
-    Property(address="4351 Berylline Lane", city="Prosper", state="Texas", beds="", baths="", sqft="", price="", image_url="", order=1),
+    Property(address="4351 Berylline Lane", city="Prosper", state="Texas", beds="6 Beds", baths="4.5 Baths", sqft="3,764 Sq.Ft.", price="$879,000", image_url="/images/berylline-1.jpg", order=1),
     Property(address="4323 Miramar Ave", city="Dallas", state="TX", beds="4 Beds", baths="3.5 Baths", sqft="4,800 Sq.Ft.", price="$2,450,000", image_url="/images/property-1.jpg", order=2),
     Property(address="6209 Lakeshore Dr", city="Dallas", state="TX", beds="3 Beds", baths="3 Baths", sqft="3,200 Sq.Ft.", price="$1,675,000", image_url="/images/property-2.jpg", order=3),
     Property(address="1204 Coventry Ct", city="Southlake", state="TX", beds="5 Beds", baths="4.5 Baths", sqft="6,100 Sq.Ft.", price="$3,295,000", image_url="/images/property-3.jpg", order=4),
