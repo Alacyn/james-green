@@ -81,7 +81,7 @@ export default function NetworkSales() {
         <Reveal className="order-2 lg:col-span-6" y={50}>
           <div className="relative overflow-hidden" data-testid="meet-james-image">
             <motion.img
-              src="/images/james-portrait.png"
+              src="/images/james-about-standing.png"
               alt="James Green — Global Real Estate Advisor"
               style={{ y: imgY }}
               className="h-[320px] w-full scale-[1.08] object-cover object-top sm:h-[480px] lg:h-[560px]"

@@ -5,7 +5,7 @@ const PANELS = [
   {
     label: "Meet",
     href: "#about",
-    img: "/images/panel-meet.png",
+    img: "/images/james-meet-seated.png",
     pos: "object-top",
     copy: "Two decades of client-first experience across financial services, lending, relocation, and advocacy.",
   },
