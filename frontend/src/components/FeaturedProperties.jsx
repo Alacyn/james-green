@@ -85,6 +85,13 @@ export default function FeaturedProperties() {
               <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-bronze-light sm:text-lg">
                 {property.price}
               </p>
+              <span
+                data-testid="listing-learn-more"
+                className="mt-6 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7]"
+              >
+                Learn More
+                <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+              </span>
             </div>
           </button>
         </Reveal>
