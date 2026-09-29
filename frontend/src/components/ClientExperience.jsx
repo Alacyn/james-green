@@ -3,7 +3,7 @@ import { Reveal, Eyebrow } from "./Reveal";
 export default function ClientExperience() {
   return (
     <section data-testid="client-experience-section" className="bg-white text-ink">
-      <div className="mx-auto max-w-4xl px-8 py-20 text-center sm:px-10 sm:py-28 lg:py-32">
+      <div className="mx-auto max-w-4xl px-8 pt-14 pb-20 text-center sm:px-10 sm:pt-20 sm:pb-28 lg:pt-24 lg:pb-32">
         <Reveal y={24}>
           <Eyebrow>Client Experience</Eyebrow>
         </Reveal>

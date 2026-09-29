@@ -122,7 +122,7 @@ export default function Footer() {
                 &copy; 2026 James Green. Dallas &middot; Fort Worth &middot; North Texas
               </p>
             </div>
-            <img src="/images/exp-luxury-white.webp" alt="eXp Luxury" className="h-7 w-auto shrink-0 sm:h-8" />
+            <img src="/images/exp-luxury-white.webp" alt="eXp Luxury" className="h-9 w-auto shrink-0 self-start sm:h-8 sm:self-auto" />
           </div>
         </div>
       </div>

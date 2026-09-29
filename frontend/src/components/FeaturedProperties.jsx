@@ -6,6 +6,41 @@ import { Reveal, EASE } from "./Reveal";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
+function CardSlideshow({ photos, alt }) {
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % photos.length), 4500);
+    return () => clearInterval(t);
+  }, [photos.length]);
+
+  return (
+    <>
+      <AnimatePresence initial={false}>
+        <motion.img
+          key={photos[idx]}
+          src={photos[idx]}
+          alt={alt}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.1, ease: "easeInOut" }}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </AnimatePresence>
+      <div data-testid="property-card-dots" className="absolute bottom-6 right-6 z-20 flex gap-1.5">
+        {photos.map((_, d) => (
+          <span
+            key={d}
+            data-testid={`property-card-dot-${d}`}
+            className={`h-1 rounded-full transition-all duration-500 ${d === idx ? "w-6 bg-bronze-light" : "w-1.5 bg-white/50"}`}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
+
 export default function FeaturedProperties() {
   const trackRef = useRef(null);
   const [properties, setProperties] = useState([]);
@@ -81,13 +116,17 @@ export default function FeaturedProperties() {
                 className={`group relative ${i === 0 ? "w-[90%] sm:w-[78%] lg:w-[64%]" : "w-[85%] sm:w-[60%] lg:w-[42%]"} shrink-0 cursor-pointer snap-start overflow-hidden`}
               >
                 <div className={`relative overflow-hidden ${i === 0 ? "h-[340px] sm:h-[480px] lg:h-[640px]" : "h-[300px] sm:h-[420px] lg:h-[520px]"}`}>
-                  {p.image_url ? (
+                  {p.photos?.length > 1 ? (
+                    <CardSlideshow photos={p.photos} alt={p.address} />
+                  ) : p.image_url ? (
+                    <img
+                      src={p.image_url}
+                      alt={p.address}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : null}
+                  {p.image_url && (
                     <>
-                      <img
-                        src={p.image_url}
-                        alt={p.address}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
                       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
                       <div className="absolute bottom-0 left-0 p-6 sm:p-8">
                         <h3
@@ -108,7 +147,8 @@ export default function FeaturedProperties() {
                         )}
                       </div>
                     </>
-                  ) : (
+                  )}
+                  {!p.image_url && (
                     <div className="flex h-full w-full flex-col items-center justify-center bg-coal px-8 text-center">
                       <h3
                         data-testid="property-address"
