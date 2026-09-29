@@ -167,6 +167,8 @@ BERYLLINE_PHOTOS = [
     "/images/berylline-3.jpg",
     "/images/berylline-4.jpg",
     "/images/berylline-5.jpg",
+    "/images/berylline-6.jpg",
+    "/images/berylline-7.jpg",
 ]
 
 BERYLLINE_DESCRIPTION = (

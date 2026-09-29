@@ -84,7 +84,7 @@ export default function ExclusiveAccess() {
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.45, ease: EASE }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[92vh] w-full max-w-md overflow-y-auto border border-white/10 bg-coal p-8 text-center sm:p-10"
+            className="relative max-h-[92vh] w-full max-w-md overflow-y-auto border border-white/10 bg-[#221810] p-8 text-center sm:p-10"
           >
             <button
               data-testid="popup-close"
@@ -95,22 +95,20 @@ export default function ExclusiveAccess() {
               <X className="h-5 w-5" />
             </button>
 
-            <p className="font-sans text-[10px] uppercase tracking-[0.4em] text-bronze-light">
-              Let&rsquo;s Connect
+            <p className="font-sans text-[10px] uppercase tracking-[0.42em] text-bronze-light">
+              Private Inquiry
             </p>
             <h2 className="mt-4 font-sans text-xl font-light uppercase tracking-[0.25em] text-[#F1E6D7] sm:text-2xl">
-              Start the Conversation
+              Begin Your Next Move
             </h2>
             <p className="mt-4 text-sm font-light leading-relaxed text-white/65">
-              Thinking about buying, selling, building, or relocating to
-              Dallas&ndash;Fort Worth? Tell James a little about what you&rsquo;re
-              considering, and he&rsquo;ll connect with you personally.
+              Buying, selling, building, or relocating? Begin with a conversation.
             </p>
 
             <form onSubmit={submit} className="mt-8 space-y-6 text-left">
               <input
                 data-testid="popup-name"
-                placeholder="Full Name *"
+                placeholder="Full Name"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className={inputCls}
@@ -118,7 +116,7 @@ export default function ExclusiveAccess() {
               <input
                 data-testid="popup-phone"
                 type="tel"
-                placeholder="Phone *"
+                placeholder="Phone"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 className={inputCls}
@@ -126,7 +124,7 @@ export default function ExclusiveAccess() {
               <input
                 data-testid="popup-email"
                 type="email"
-                placeholder="Email *"
+                placeholder="Email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className={inputCls}
@@ -151,7 +149,7 @@ export default function ExclusiveAccess() {
                 disabled={submitting}
                 className="group flex w-full items-center justify-center gap-3 bg-[#F1E6D7] py-4 font-sans text-[11px] uppercase tracking-[0.3em] text-ink transition-all duration-500 hover:bg-white disabled:opacity-60"
               >
-                {submitting ? "Sending..." : "Let's Talk"}
+                {submitting ? "Sending..." : "Connect with James"}
                 <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
               </button>
             </form>

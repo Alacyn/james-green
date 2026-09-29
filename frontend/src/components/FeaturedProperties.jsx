@@ -10,6 +10,7 @@ export default function FeaturedProperties() {
   const trackRef = useRef(null);
   const [properties, setProperties] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
     axios.get(`${API}/properties`)
@@ -29,6 +30,19 @@ export default function FeaturedProperties() {
       window.removeEventListener("keydown", onKey);
     };
   }, [selected]);
+
+  const openListing = (p) => {
+    setSelected(p);
+    setPhotoIndex(0);
+  };
+
+  const gallery = selected
+    ? selected.photos?.length
+      ? selected.photos
+      : [selected.image_url]
+    : [];
+  const stepPhoto = (dir) =>
+    setPhotoIndex((i) => (i + dir + gallery.length) % gallery.length);
 
   const scrollBy = (dir) => {
     const track = trackRef.current;
@@ -60,9 +74,9 @@ export default function FeaturedProperties() {
                 role="button"
                 tabIndex={0}
                 aria-label={`View details for ${p.address}`}
-                onClick={() => setSelected(p)}
+                onClick={() => openListing(p)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter") setSelected(p);
+                  if (e.key === "Enter") openListing(p);
                 }}
                 className={`group relative ${i === 0 ? "w-[90%] sm:w-[78%] lg:w-[64%]" : "w-[85%] sm:w-[60%] lg:w-[42%]"} shrink-0 cursor-pointer snap-start overflow-hidden`}
               >
@@ -169,12 +183,55 @@ export default function FeaturedProperties() {
               </button>
 
               <div className="lg:w-[55%] lg:shrink-0">
-                <img
-                  data-testid="modal-photo"
-                  src={selected.image_url}
-                  alt={selected.address}
-                  className="h-64 w-full object-cover sm:h-80 lg:h-[640px]"
-                />
+                <div className="relative">
+                  <img
+                    data-testid="modal-photo"
+                    src={gallery[photoIndex]}
+                    alt={`${selected.address} photo ${photoIndex + 1}`}
+                    className="h-64 w-full object-cover sm:h-80 lg:h-[540px]"
+                  />
+                  {gallery.length > 1 && (
+                    <>
+                      <button
+                        data-testid="modal-photo-prev"
+                        onClick={() => stepPhoto(-1)}
+                        aria-label="Previous photo"
+                        className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-black/40 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/70"
+                      >
+                        <ChevronLeft className="h-5 w-5" />
+                      </button>
+                      <button
+                        data-testid="modal-photo-next"
+                        onClick={() => stepPhoto(1)}
+                        aria-label="Next photo"
+                        className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-black/40 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/70"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                      <span
+                        data-testid="modal-photo-count"
+                        className="absolute bottom-3 right-3 border border-white/25 bg-black/50 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white/90 backdrop-blur-sm"
+                      >
+                        {photoIndex + 1} / {gallery.length}
+                      </span>
+                    </>
+                  )}
+                </div>
+                {gallery.length > 1 && (
+                  <div data-testid="modal-thumbs" className="flex gap-2 overflow-x-auto p-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    {gallery.map((src, i) => (
+                      <button
+                        key={src}
+                        data-testid={`modal-thumb-${i}`}
+                        onClick={() => setPhotoIndex(i)}
+                        aria-label={`Photo ${i + 1}`}
+                        className={`h-14 w-20 shrink-0 overflow-hidden border transition-all duration-300 ${i === photoIndex ? "border-bronze-light opacity-100" : "border-transparent opacity-50 hover:opacity-90"}`}
+                      >
+                        <img src={src} alt="" className="h-full w-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="min-h-0 flex-1 overflow-y-auto p-6 sm:p-10 lg:max-h-[92vh]">
