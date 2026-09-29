@@ -67,6 +67,26 @@ export default function FeaturedProperties() {
             </p>
           </Reveal>
         )}
+        {property && (
+          <Reveal delay={0.12} y={16}>
+            <div className="mt-4 flex flex-col items-center gap-5">
+              <p
+                data-testid="listing-specs-line"
+                className="text-center font-sans text-[11px] uppercase tracking-[0.3em] text-ink/60 sm:text-xs"
+              >
+                {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
+              </p>
+              <a
+                data-testid="listing-request-info"
+                href={`mailto:JamesAGreen@eXpRealty.com?subject=${encodeURIComponent(`Inquiry: ${property.address}`)}`}
+                className="inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
+              >
+                Request Info
+                <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+              </a>
+            </div>
+          </Reveal>
+        )}
       </div>
 
       {frontImage && property && (
@@ -88,26 +108,6 @@ export default function FeaturedProperties() {
                 alt={`${property.address} front exterior`}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/60 opacity-0 transition-all duration-500 group-hover:opacity-100" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center opacity-0 transition-all duration-500 group-hover:opacity-100">
-                <p className="font-sans text-[11px] uppercase tracking-[0.3em] text-white/90 sm:text-xs">
-                  {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
-                </p>
-                {property.price && (
-                  <p data-testid="property-price" className="mt-4 font-sans text-lg font-light tracking-[0.1em] text-white sm:text-xl">
-                    {property.price}
-                  </p>
-                )}
-                <a
-                  data-testid="listing-request-info"
-                  href={`mailto:JamesAGreen@eXpRealty.com?subject=${encodeURIComponent(`Inquiry: ${property.address}`)}`}
-                  onClick={(e) => e.stopPropagation()}
-                  className="mt-7 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
-                >
-                  Request Info
-                  <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
-                </a>
-              </div>
             </div>
             <div
               data-testid="exterior-photo-1"
@@ -125,17 +125,6 @@ export default function FeaturedProperties() {
                 alt={`${property.address} backyard`}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/60 opacity-0 transition-all duration-500 group-hover:opacity-100" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center opacity-0 transition-all duration-500 group-hover:opacity-100">
-                <p className="font-sans text-[11px] uppercase tracking-[0.3em] text-white/90 sm:text-xs">
-                  {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
-                </p>
-                {property.price && (
-                  <p className="mt-4 font-sans text-lg font-light tracking-[0.1em] text-white sm:text-xl">
-                    {property.price}
-                  </p>
-                )}
-              </div>
             </div>
           </div>
         </Reveal>
