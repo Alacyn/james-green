@@ -1,19 +1,34 @@
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Reveal } from "./Reveal";
+import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Reveal, EASE } from "./Reveal";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function FeaturedProperties() {
   const trackRef = useRef(null);
   const [properties, setProperties] = useState([]);
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     axios.get(`${API}/properties`)
       .then((res) => setProperties(res.data))
       .catch(() => setProperties([]));
   }, []);
+
+  useEffect(() => {
+    if (!selected) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => {
+      if (e.key === "Escape") setSelected(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [selected]);
 
   const scrollBy = (dir) => {
     const track = trackRef.current;
@@ -42,7 +57,14 @@ export default function FeaturedProperties() {
               <article
                 key={p.id}
                 data-testid="property-card"
-                className="group relative w-[85%] shrink-0 snap-start overflow-hidden sm:w-[60%] lg:w-[42%]"
+                role="button"
+                tabIndex={0}
+                aria-label={`View details for ${p.address}`}
+                onClick={() => setSelected(p)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") setSelected(p);
+                }}
+                className="group relative w-[85%] shrink-0 cursor-pointer snap-start overflow-hidden sm:w-[60%] lg:w-[42%]"
               >
                 <div className="relative h-[300px] overflow-hidden sm:h-[420px] lg:h-[520px]">
                   {p.image_url ? (
@@ -117,6 +139,85 @@ export default function FeaturedProperties() {
           )}
         </div>
       </Reveal>
+
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            data-testid="property-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setSelected(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 28, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.98 }}
+              transition={{ duration: 0.4, ease: EASE }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative flex max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden bg-coal lg:flex-row"
+            >
+              <button
+                data-testid="modal-close"
+                onClick={() => setSelected(null)}
+                aria-label="Close listing details"
+                className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center border border-white/30 bg-black/50 text-white transition-all duration-300 hover:bg-black/80"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              <div className="lg:w-[55%] lg:shrink-0">
+                <img
+                  data-testid="modal-photo"
+                  src={selected.image_url}
+                  alt={selected.address}
+                  className="h-64 w-full object-cover sm:h-80 lg:h-[640px]"
+                />
+              </div>
+
+              <div className="min-h-0 flex-1 overflow-y-auto p-6 sm:p-10 lg:max-h-[92vh]">
+                <p className="font-sans text-[10px] uppercase tracking-[0.35em] text-bronze-light">
+                  Currently Representing
+                </p>
+                <h3
+                  data-testid="modal-address"
+                  className="mt-4 font-sans text-xl font-light uppercase tracking-[0.25em] text-[#F1E6D7] sm:text-2xl"
+                >
+                  {selected.address}
+                </h3>
+                <p className="mt-3 font-sans text-[11px] uppercase tracking-[0.3em] text-white/60">
+                  {selected.city}, {selected.state}
+                </p>
+                {selected.price && (
+                  <p data-testid="modal-price" className="mt-6 font-sans text-lg font-light tracking-[0.1em] text-bronze-light sm:text-xl">
+                    {selected.price}
+                  </p>
+                )}
+                {(selected.beds || selected.baths || selected.sqft) && (
+                  <p className="mt-2 text-xs font-light tracking-[0.08em] text-white/75 sm:text-sm">
+                    {[selected.beds, selected.baths, selected.sqft].filter(Boolean).join(" | ")}
+                  </p>
+                )}
+                {selected.description && (
+                  <p data-testid="property-description" className="mt-6 text-[13px] font-light leading-[1.9] text-white/70 sm:text-sm">
+                    {selected.description}
+                  </p>
+                )}
+                <button
+                  data-testid="modal-cta"
+                  onClick={() => (window.location.href = "mailto:JamesAGreen@eXpRealty.com")}
+                  className="group mt-8 flex items-center gap-3 bg-bronze/90 px-8 py-3.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
+                >
+                  Inquire About This Home
+                  <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -154,11 +154,47 @@ class Property(BaseDocument):
     sqft: str
     price: str
     image_url: str
+    photos: List[str] = []
+    description: str = ""
     order: int = 0
 
 
+BERYLLINE_PHOTOS = [
+    "/images/berylline-1.jpg",
+    "/images/berylline-2.jpg",
+    "/images/berylline-3.jpg",
+    "/images/berylline-4.jpg",
+    "/images/berylline-5.jpg",
+]
+
+BERYLLINE_DESCRIPTION = (
+    "Welcome to 4351 Berylline Lane, a beautifully designed 6-bedroom, 4.5-bath home on a quiet "
+    "cul-de-sac in the sought-after Windsong Ranch community. Built in 2024 and offering 3,764 "
+    "square feet of thoughtfully designed living space, this home blends modern style, "
+    "functionality, and an exceptional lifestyle. Step inside to soaring ceilings, abundant "
+    "natural light, and an open-concept floor plan designed for everyday living and entertaining. "
+    "The flexible layout features dual primary suites, one on each level, ideal for "
+    "multigenerational living, extended guests, or a growing family. Upstairs, the spacious "
+    "primary suite provides a private retreat overlooking the expansive backyard. A standout "
+    "feature is the oversized game room with direct access to a private balcony overlooking the "
+    "cul-de-sac and adjacent walking trail. Whether enjoying morning coffee, unwinding after a "
+    "long day, or gathering with family and friends, this unique space offers beautiful views "
+    "and a connection to the surrounding green space. Situated on an oversized 10,106-square-foot "
+    "lot, the backyard offers plenty of room to relax, entertain, and create lasting memories. "
+    "The pergola-covered patio provides the perfect setting for outdoor dining and gatherings, "
+    "while the spacious yard offers endless possibilities. Beyond the home itself, Windsong Ranch "
+    "is known for its lifestyle. Residents enjoy miles of scenic walking and biking trails, "
+    "resort-style amenities, top-rated Prosper ISD schools, and a true sense of community. It is "
+    "the kind of neighborhood where families take evening walks, neighbors connect, and kids "
+    "still play outside. Located moments from community trails and amenities, this home offers "
+    "the perfect balance of privacy, convenience, and resort-style living. More than just a home, "
+    "it is an opportunity to enjoy one of Prosper's premier master-planned communities while "
+    "experiencing the comfort, space, and flexibility of a nearly new home in an exceptional "
+    "location."
+)
+
 SAMPLE_PROPERTIES = [
-    Property(address="4351 Berylline Lane", city="Prosper", state="Texas", beds="6 Beds", baths="4.5 Baths", sqft="3,764 Sq.Ft.", price="$879,000", image_url="/images/berylline-1.jpg", order=1),
+    Property(address="4351 Berylline Lane", city="Prosper", state="Texas", beds="6 Beds", baths="4.5 Baths", sqft="3,764 Sq.Ft.", price="$879,000", image_url="/images/berylline-1.jpg", photos=BERYLLINE_PHOTOS, description=BERYLLINE_DESCRIPTION, order=1),
     Property(address="4323 Miramar Ave", city="Dallas", state="TX", beds="4 Beds", baths="3.5 Baths", sqft="4,800 Sq.Ft.", price="$2,450,000", image_url="/images/property-1.jpg", order=2),
     Property(address="6209 Lakeshore Dr", city="Dallas", state="TX", beds="3 Beds", baths="3 Baths", sqft="3,200 Sq.Ft.", price="$1,675,000", image_url="/images/property-2.jpg", order=3),
     Property(address="1204 Coventry Ct", city="Southlake", state="TX", beds="5 Beds", baths="4.5 Baths", sqft="6,100 Sq.Ft.", price="$3,295,000", image_url="/images/property-3.jpg", order=4),
