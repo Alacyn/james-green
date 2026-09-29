@@ -35,6 +35,8 @@ EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
 EMAIL_REPLY_TO = os.environ.get("EMAIL_REPLY_TO")
 OWNER_EMAIL = os.environ["OWNER_EMAIL"]
 
+EMAIL_RE = re.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
+
 logger = logging.getLogger(__name__)
 
 _SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
@@ -246,6 +248,12 @@ async def get_status_checks():
 
 @api_router.post("/connect")
 async def create_connect_inquiry(input: ConnectInquiryCreate):
+    if not EMAIL_RE.match(input.email.strip()):
+        raise HTTPException(status_code=422, detail="Please enter a valid email address.")
+    phone_digits = re.sub(r"\D", "", input.phone)
+    if not (7 <= len(phone_digits) <= 15):
+        raise HTTPException(status_code=422, detail="Please enter a valid phone number.")
+
     inquiry = ConnectInquiry(
         first_name=input.first_name,
         last_name=input.last_name,

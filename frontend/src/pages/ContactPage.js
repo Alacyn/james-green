@@ -10,19 +10,34 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const INTERESTS = ["Buying", "Selling", "New Construction", "Relocating", "Investing"];
 
+const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
 const inputCls =
-  "w-full border-b border-white/30 bg-transparent py-2.5 text-base font-light text-[#F1E6D7] placeholder-white/35 outline-none transition-colors duration-300 focus:border-bronze-light";
+  "w-full border-b bg-transparent py-2.5 text-base font-light text-[#F1E6D7] placeholder-white/35 outline-none transition-colors duration-300 focus:border-bronze-light";
+const inputTone = (hasError) => (hasError ? " border-red-300/70" : " border-white/30");
 
 const labelCls = "block font-sans text-[10px] uppercase tracking-[0.32em] text-bronze-light";
+const errorCls = "mt-1.5 text-[11px] font-light text-red-300";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", interest: "", consent: false });
+  const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+
+  const validate = () => {
+    const next = {};
+    if (!form.name.trim()) next.name = "Please enter your full name.";
+    const digits = form.phone.replace(/\D/g, "");
+    if (digits.length < 7 || digits.length > 15) next.phone = "Please enter a valid phone number.";
+    if (!EMAIL_RE.test(form.email.trim())) next.email = "Please enter a valid email address.";
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
-      toast.error("Please fill in your name, phone, and email.");
+    if (!validate()) {
+      toast.error("Please check the highlighted fields.");
       return;
     }
     if (!form.consent) {
@@ -45,6 +60,7 @@ export default function ContactPage() {
       });
       toast.success("Thank you — James will connect with you personally.");
       setForm({ name: "", phone: "", email: "", interest: "", consent: false });
+      setErrors({});
     } catch {
       toast.error("Something went wrong — please try again.");
     } finally {
@@ -76,7 +92,7 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.15, ease: EASE }}
         >
-          <form data-testid="contact-form" onSubmit={submit} className="mt-16">
+          <form data-testid="contact-form" onSubmit={submit} className="mt-16" noValidate>
             <div className="space-y-9">
               <div>
                 <label htmlFor="contact-name" className={labelCls}>
@@ -87,9 +103,14 @@ export default function ContactPage() {
                   data-testid="contact-name"
                   placeholder="Enter your full name"
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className={inputCls}
+                  onChange={(e) => {
+                    setForm({ ...form, name: e.target.value });
+                    setErrors((p) => ({ ...p, name: undefined }));
+                  }}
+                  aria-invalid={!!errors.name}
+                  className={inputCls + inputTone(errors.name)}
                 />
+                {errors.name && <p className={errorCls}>{errors.name}</p>}
               </div>
               <div>
                 <label htmlFor="contact-phone" className={labelCls}>
@@ -101,9 +122,14 @@ export default function ContactPage() {
                   type="tel"
                   placeholder="Enter your phone number"
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className={inputCls}
+                  onChange={(e) => {
+                    setForm({ ...form, phone: e.target.value });
+                    setErrors((p) => ({ ...p, phone: undefined }));
+                  }}
+                  aria-invalid={!!errors.phone}
+                  className={inputCls + inputTone(errors.phone)}
                 />
+                {errors.phone && <p className={errorCls}>{errors.phone}</p>}
               </div>
               <div>
                 <label htmlFor="contact-email" className={labelCls}>
@@ -115,9 +141,14 @@ export default function ContactPage() {
                   type="email"
                   placeholder="Enter your email address"
                   value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className={inputCls}
+                  onChange={(e) => {
+                    setForm({ ...form, email: e.target.value });
+                    setErrors((p) => ({ ...p, email: undefined }));
+                  }}
+                  aria-invalid={!!errors.email}
+                  className={inputCls + inputTone(errors.email)}
                 />
+                {errors.email && <p className={errorCls}>{errors.email}</p>}
               </div>
               <div>
                 <label htmlFor="contact-interest" className={labelCls}>
