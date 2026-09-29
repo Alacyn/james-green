@@ -47,6 +47,7 @@ export default function FeaturedProperties() {
 
   const property = properties[0];
   const frontImage = property?.photos?.[0] || property?.image_url || "";
+  const backImage = property?.photos?.[5] || property?.photos?.[1] || "";
 
   return (
     <section data-testid="featured-properties-section" id="properties" className="bg-paper pt-20 pb-0 text-ink sm:pt-28 sm:pb-0 lg:pt-28 lg:pb-0">
@@ -60,46 +61,60 @@ export default function FeaturedProperties() {
 
       {frontImage && property && (
         <Reveal delay={0.15} y={40}>
-          <div
-            data-testid="exterior-photo-0"
-            role="button"
-            tabIndex={0}
-            onClick={() => openListing(property)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") openListing(property);
-            }}
-            aria-label={`View details for ${property.address}`}
-            className="group relative mt-12 block h-[380px] w-full cursor-pointer overflow-hidden sm:mt-16 sm:h-[520px] lg:h-[660px]"
-          >
-            <img
-              src={frontImage}
-              alt={`${property.address} exterior`}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-6 text-left sm:p-10 lg:p-14">
-              <h3
-                data-testid="property-address"
-                className="font-sans text-xl font-light uppercase tracking-[0.25em] text-white sm:text-3xl"
-              >
-                {property.address}
-              </h3>
-              <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
-                {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
-              </p>
-              <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-white sm:text-lg">
-                {property.price}
-              </p>
-              <a
-                data-testid="listing-request-info"
-                href={`mailto:JamesAGreen@eXpRealty.com?subject=${encodeURIComponent(`Inquiry: ${property.address}`)}`}
-                onClick={(e) => e.stopPropagation()}
-                className="mt-6 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
-              >
-                Request Info
-                <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
-              </a>
+          <div className="mt-12 grid grid-cols-1 sm:mt-16 sm:grid-cols-2">
+            <div
+              data-testid="exterior-photo-0"
+              role="button"
+              tabIndex={0}
+              onClick={() => openListing(property)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") openListing(property);
+              }}
+              aria-label={`View details for ${property.address}`}
+              className="group relative h-72 cursor-pointer overflow-hidden sm:h-[420px] lg:h-[500px]"
+            >
+              <img
+                src={frontImage}
+                alt={`${property.address} front exterior`}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-6 text-left sm:p-10">
+                <h3
+                  data-testid="property-address"
+                  className="font-sans text-lg font-light uppercase tracking-[0.25em] text-white sm:text-2xl"
+                >
+                  {property.address}
+                </h3>
+                <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
+                  {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
+                </p>
+                <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-white sm:text-base">
+                  {property.price}
+                </p>
+                <a
+                  data-testid="listing-request-info"
+                  href={`mailto:JamesAGreen@eXpRealty.com?subject=${encodeURIComponent(`Inquiry: ${property.address}`)}`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="mt-6 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
+                >
+                  Request Info
+                  <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+                </a>
+              </div>
             </div>
+            <button
+              data-testid="exterior-photo-1"
+              onClick={() => openListing(property)}
+              aria-label={`View backyard of ${property.address}`}
+              className="group relative h-72 overflow-hidden sm:h-[420px] lg:h-[500px]"
+            >
+              <img
+                src={backImage}
+                alt={`${property.address} backyard`}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </button>
           </div>
         </Reveal>
       )}
