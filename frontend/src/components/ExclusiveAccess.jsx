@@ -82,7 +82,7 @@ export default function ExclusiveAccess() {
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.45, ease: EASE }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[92vh] w-full max-w-md overflow-y-auto border border-white/10 bg-[#221810] p-8 text-center sm:p-10"
+            className="relative max-h-[92vh] w-full max-w-md overflow-y-auto border border-white/20 bg-[#221810]/70 p-8 text-center shadow-2xl backdrop-blur-xl sm:p-10"
           >
             <button
               data-testid="popup-close"

@@ -60,11 +60,16 @@ export default function FeaturedProperties() {
 
       {frontImage && property && (
         <Reveal delay={0.15} y={40}>
-          <button
+          <div
             data-testid="exterior-photo-0"
+            role="button"
+            tabIndex={0}
             onClick={() => openListing(property)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") openListing(property);
+            }}
             aria-label={`View details for ${property.address}`}
-            className="group relative mt-12 block h-[380px] w-full overflow-hidden sm:mt-16 sm:h-[520px] lg:h-[660px]"
+            className="group relative mt-12 block h-[380px] w-full cursor-pointer overflow-hidden sm:mt-16 sm:h-[520px] lg:h-[660px]"
           >
             <img
               src={frontImage}
@@ -82,18 +87,20 @@ export default function FeaturedProperties() {
               <p className="mt-3 text-xs font-light tracking-[0.08em] text-white/85 sm:text-sm">
                 {[property.beds, property.baths, property.sqft].filter(Boolean).join(" | ")}
               </p>
-              <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-bronze-light sm:text-lg">
+              <p data-testid="property-price" className="mt-2 text-sm font-light tracking-[0.1em] text-white sm:text-lg">
                 {property.price}
               </p>
-              <span
-                data-testid="listing-learn-more"
-                className="mt-6 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7]"
+              <a
+                data-testid="listing-request-info"
+                href={`mailto:JamesAGreen@eXpRealty.com?subject=${encodeURIComponent(`Inquiry: ${property.address}`)}`}
+                onClick={(e) => e.stopPropagation()}
+                className="mt-6 inline-flex items-center gap-3 bg-bronze/90 px-7 py-3 font-sans text-[11px] uppercase tracking-[0.3em] text-[#F1E6D7] transition-all duration-500"
               >
-                Learn More
+                Request Info
                 <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
-              </span>
+              </a>
             </div>
-          </button>
+          </div>
         </Reveal>
       )}
 
