@@ -101,6 +101,8 @@
 
 - Photos v21 (per user): About/Meet James Green section photo swapped again to the newest standing take (hands in pockets, head tilted) — `/images/james-about-standing-2.png` in NetworkSales.jsx; MEET explore panel unchanged (seated shot). Verified desktop 1440px + mobile 390px, image loads, no overflow.
 
+- Email fix v22 (per user report: "James never received any of the email test"): root cause = Emergent managed email proxy blocked `JamesAGreen@eXpRealty.com` pre-send with 422 `undeliverable_recipient` (likely from the earlier rapid test-email burst; code/integration verified 100% playbook-compliant, pipeline OK — 202 to delivered@resend.dev, MX healthy). Escalated: user must email support@emergent.sh for manual unblock. Interim fix: OWNER_EMAIL switched to `jamesgreendfw@gmail.com` in backend/.env, backend restarted, E2E verified — POST /api/connect returns email_sent:true, proxy logs 202 Accepted. NOTE: live site needs a Deploy press to pick up the new recipient; EMAIL_REPLY_TO still the eXp address.
+
 ## Backlog
 - P2: Duplicate light "Find Your Place" form variant (original renders the form twice, dark + light).
 - P2: Live Instagram API feed (current tiles reuse the three site photos).
