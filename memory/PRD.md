@@ -99,6 +99,8 @@
 
 - Photos v20 (per user, this session): new photoshoot portraits placed — SEATED shot (brown suit, on couch) into the MEET explore panel (`/images/james-meet-seated.png`, ExplorePanels), STANDING shot (leaning against stone wall) into the "Meet James Green / About" section (`/images/james-about-standing.png`, NetworkSales). Old files (james-portrait.png, panel-meet.png, james-sitting.png, james-wide.png) remain in public/images but are unreferenced. Verified desktop 1440px + mobile 390px, no overflow, crops clean.
 
+- Photos v21 (per user): About/Meet James Green section photo swapped again to the newest standing take (hands in pockets, head tilted) — `/images/james-about-standing-2.png` in NetworkSales.jsx; MEET explore panel unchanged (seated shot). Verified desktop 1440px + mobile 390px, image loads, no overflow.
+
 ## Backlog
 - P2: Duplicate light "Find Your Place" form variant (original renders the form twice, dark + light).
 - P2: Live Instagram API feed (current tiles reuse the three site photos).
